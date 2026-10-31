@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MeGaA Portfolio</title>
+<meta name="description" content="Demo videos of apps and sites built by MeGaA: Vortex, MeGaA Clipper, GridPad, Ozone Studios, Voyago and Auriga.">
+<style>
+  :root { --bg: #07080f; --card: #0e101c; --line: #1d2136; --ink: #e8eaed; --dim: #8b93b0; --accent: #00e5ff; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 1080px; margin: 0 auto; padding: 48px 16px 64px; }
+  h1 { font-size: clamp(28px, 5vw, 44px); margin: 0 0 8px; letter-spacing: -0.01em; }
+  .lead { color: var(--dim); margin: 0 0 8px; max-width: 760px; }
+  .links { margin: 0 0 40px; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  section { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; margin: 0 0 28px; }
+  section h2 { font-size: 22px; margin: 0 0 4px; }
+  section p { color: var(--dim); margin: 0 0 14px; }
+  video { width: 100%; aspect-ratio: 16 / 9; border-radius: 10px; background: #000; display: block; }
+  .meta { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 12px; font-size: 14px; color: var(--dim); }
+  footer { color: var(--dim); font-size: 14px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>MeGaA: Portfolio</h1>
+  <p class="lead">Apps and sites I designed and built with AI pair-programming. Each video is the real
+    app or site, recorded running with demo data, then cut with HyperFrames.</p>
+  <p class="links"><a href="https://github.com/1MeGaA1/MeGaA-portfolio">Source code on GitHub</a></p>
+
+  <section id="vortex">
+    <h2>Vortex</h2>
+    <p>Gaming-cafe management system: staff sell time at the counter, members log in on any PC, and every PC locks itself when the time runs out.</p>
+    <video controls playsinline preload="metadata" poster="media/vortex-poster.jpg" src="media/vortex.mp4"></video>
+    <div class="meta"><span>39 s</span><span>FastAPI · SQLite · WebSockets · Qt Quick</span><a href="https://github.com/1MeGaA1/MeGaA-portfolio/tree/main/apps/vortex">Code</a></div>
+  </section>
+
+  <section id="clipper">
+    <h2>MeGaA Clipper</h2>
+    <p>Turns a long video into vertical short clips with word-by-word captions, transcribed on the GPU and rendered locally.</p>
+    <video controls playsinline preload="metadata" poster="media/clipper-poster.jpg" src="media/clipper.mp4"></video>
+    <div class="meta"><span>39 s</span><span>Python stdlib · whisper.cpp (CUDA) · ffmpeg NVENC · Qt Quick</span><a href="https://github.com/1MeGaA1/MeGaA-portfolio/tree/main/apps/megaa-clipper">Code</a></div>
+  </section>
+
+  <section id="gridpad">
+    <h2>GridPad</h2>
+    <p>A notepad laid out like a spreadsheet: notes in cells, sheets as tabs, keys for everything.</p>
+    <video controls playsinline preload="metadata" poster="media/gridpad-poster.jpg" src="media/gridpad.mp4"></video>
+    <div class="meta"><span>34 s</span><span>Python · PySide6 · Qt Quick</span><a href="https://github.com/1MeGaA1/MeGaA-portfolio/tree/main/apps/gridpad">Code</a></div>
+  </section>
+
+  <section id="ozone">
+    <h2>Ozone Studios</h2>
+    <p>Booking site for a Cairo recording studio: pick a room, a night and a slot, then close it on WhatsApp.</p>
+    <video controls playsinline preload="metadata" poster="media/ozone-poster.jpg" src="media/ozone.mp4"></video>
+    <div class="meta"><span>34 s</span><span>HTML · CSS · JavaScript · Firebase</span><a href="web/ozone-booking/index.html">Live demo</a><a href="https://github.com/1MeGaA1/MeGaA-portfolio/tree/main/web/ozone-booking">Code</a></div>
+  </section>
+
+  <section id="voyago-auriga">
+    <h2>Voyago / Auriga</h2>
+    <p>Two landing-page templates: Voyago for travel trips, Auriga for a coastal hotel and its suites.</p>
+    <video controls playsinline preload="metadata" poster="media/voyago-auriga-poster.jpg" src="media/voyago-auriga.mp4"></video>
+    <div class="meta"><span>35 s</span><span>HTML · CSS · JavaScript</span><a href="web/tourism-templates/1-voyago-trips.html">Voyago live</a><a href="web/tourism-templates/2-auriga-suites.html">Auriga live</a><a href="https://github.com/1MeGaA1/MeGaA-portfolio/tree/main/web/tourism-templates">Code</a></div>
+  </section>
+
+  <footer>Ozone's live demo runs without its Firebase backend, so booking and sign-in are switched off there.</footer>
+</main>
+</body>
+</html>

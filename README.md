@@ -7,29 +7,29 @@ only, with Qt Quick (PySide6 / QML) for the native, GPU-drawn UIs.
 ## Demo videos
 
 Each video is the real app or site, recorded running (demo data, made-up names), then cut
-with [HyperFrames](https://github.com/heygen-com/hyperframes). Click a preview for the full video.
+with [HyperFrames](https://github.com/heygen-com/hyperframes). Click a preview to play the full video on the [portfolio page](https://1megaa1.github.io/MeGaA-portfolio/).
 
 <table>
   <tr>
     <td width="50%"><b>Vortex</b>: gaming-cafe system<br>
-      <a href="media/vortex.mp4"><img src="media/vortex-preview.gif" alt="Vortex demo"></a><br>
-      <a href="media/vortex.mp4">▶ Watch (39 s)</a></td>
+      <a href="https://1megaa1.github.io/MeGaA-portfolio/#vortex"><img src="media/vortex-preview.gif" alt="Vortex demo"></a><br>
+      <a href="https://1megaa1.github.io/MeGaA-portfolio/#vortex">▶ Watch (39 s)</a></td>
     <td width="50%"><b>MeGaA Clipper</b>: long video in, short clips out<br>
-      <a href="media/clipper.mp4"><img src="media/clipper-preview.gif" alt="MeGaA Clipper demo"></a><br>
-      <a href="media/clipper.mp4">▶ Watch (39 s)</a></td>
+      <a href="https://1megaa1.github.io/MeGaA-portfolio/#clipper"><img src="media/clipper-preview.gif" alt="MeGaA Clipper demo"></a><br>
+      <a href="https://1megaa1.github.io/MeGaA-portfolio/#clipper">▶ Watch (39 s)</a></td>
   </tr>
   <tr>
     <td width="50%"><b>GridPad</b>: a notepad laid out like a spreadsheet<br>
-      <a href="media/gridpad.mp4"><img src="media/gridpad-preview.gif" alt="GridPad demo"></a><br>
-      <a href="media/gridpad.mp4">▶ Watch (34 s)</a></td>
+      <a href="https://1megaa1.github.io/MeGaA-portfolio/#gridpad"><img src="media/gridpad-preview.gif" alt="GridPad demo"></a><br>
+      <a href="https://1megaa1.github.io/MeGaA-portfolio/#gridpad">▶ Watch (34 s)</a></td>
     <td width="50%"><b>Ozone Studios</b>: studio booking site<br>
-      <a href="media/ozone.mp4"><img src="media/ozone-preview.gif" alt="Ozone Studios demo"></a><br>
-      <a href="media/ozone.mp4">▶ Watch (34 s)</a></td>
+      <a href="https://1megaa1.github.io/MeGaA-portfolio/#ozone"><img src="media/ozone-preview.gif" alt="Ozone Studios demo"></a><br>
+      <a href="https://1megaa1.github.io/MeGaA-portfolio/#ozone">▶ Watch (34 s)</a></td>
   </tr>
   <tr>
     <td width="50%"><b>Voyago / Auriga</b>: travel and hotel templates<br>
-      <a href="media/voyago-auriga.mp4"><img src="media/voyago-auriga-preview.gif" alt="Voyago and Auriga demo"></a><br>
-      <a href="media/voyago-auriga.mp4">▶ Watch (35 s)</a></td>
+      <a href="https://1megaa1.github.io/MeGaA-portfolio/#voyago-auriga"><img src="media/voyago-auriga-preview.gif" alt="Voyago and Auriga demo"></a><br>
+      <a href="https://1megaa1.github.io/MeGaA-portfolio/#voyago-auriga">▶ Watch (35 s)</a></td>
     <td width="50%"></td>
   </tr>
 </table>
@@ -46,8 +46,8 @@ with [HyperFrames](https://github.com/heygen-com/hyperframes). Click a preview f
 
 | Project | What it is |
 |---|---|
-| [**Ozone Studios**](web/ozone-booking/) | Booking site and admin panel for a recording studio in Cairo: per-room calendars, time slots, beat store, WhatsApp hand-off. Firebase Auth + Firestore. |
-| [**Voyago / Auriga**](web/tourism-templates/) | Two travel and hospitality templates. |
+| [**Ozone Studios**](web/ozone-booking/) | Booking site and admin panel for a recording studio in Cairo: per-room calendars, time slots, beat store, WhatsApp hand-off. Firebase Auth + Firestore. [Live demo](https://1megaa1.github.io/MeGaA-portfolio/web/ozone-booking/index.html) |
+| [**Voyago / Auriga**](web/tourism-templates/) | Two travel and hospitality templates. Live: [Voyago](https://1megaa1.github.io/MeGaA-portfolio/web/tourism-templates/1-voyago-trips.html) · [Auriga](https://1megaa1.github.io/MeGaA-portfolio/web/tourism-templates/2-auriga-suites.html) |
 
 ## Screenshots
 
