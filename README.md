@@ -4,6 +4,36 @@ Projects I designed and built with AI pair-programming (Claude Code): real deskt
 a client/server system, and front-end sites. Most of the Python is standard-library
 only, with Qt Quick (PySide6 / QML) for the native, GPU-drawn UIs.
 
+## Demo videos
+
+Each video is the real app or site, recorded running (demo data, made-up names), then cut
+with [HyperFrames](https://github.com/heygen-com/hyperframes). Click a preview for the full video.
+
+<table>
+  <tr>
+    <td width="50%"><b>Vortex</b>: gaming-cafe system<br>
+      <a href="media/vortex.mp4"><img src="media/vortex-preview.gif" alt="Vortex demo"></a><br>
+      <a href="media/vortex.mp4">▶ Watch (39 s)</a></td>
+    <td width="50%"><b>MeGaA Clipper</b>: long video in, short clips out<br>
+      <a href="media/clipper.mp4"><img src="media/clipper-preview.gif" alt="MeGaA Clipper demo"></a><br>
+      <a href="media/clipper.mp4">▶ Watch (39 s)</a></td>
+  </tr>
+  <tr>
+    <td width="50%"><b>GridPad</b>: a notepad laid out like a spreadsheet<br>
+      <a href="media/gridpad.mp4"><img src="media/gridpad-preview.gif" alt="GridPad demo"></a><br>
+      <a href="media/gridpad.mp4">▶ Watch (34 s)</a></td>
+    <td width="50%"><b>Ozone Studios</b>: studio booking site<br>
+      <a href="media/ozone.mp4"><img src="media/ozone-preview.gif" alt="Ozone Studios demo"></a><br>
+      <a href="media/ozone.mp4">▶ Watch (34 s)</a></td>
+  </tr>
+  <tr>
+    <td width="50%"><b>Voyago / Auriga</b>: travel and hotel templates<br>
+      <a href="media/voyago-auriga.mp4"><img src="media/voyago-auriga-preview.gif" alt="Voyago and Auriga demo"></a><br>
+      <a href="media/voyago-auriga.mp4">▶ Watch (35 s)</a></td>
+    <td width="50%"></td>
+  </tr>
+</table>
+
 ## Desktop apps
 
 | Project | What it is | Stack |
