@@ -6,7 +6,6 @@ Front-end work: plain HTML, CSS and JavaScript, no build step. Open any `index.h
 | Project | What it is |
 |---|---|
 | [ozone-booking](ozone-booking/) | Marketing site and booking system for a Cairo recording studio: two rooms with their own calendars and time slots, beat store, team and gear pages, WhatsApp hand-off, and a staff **admin panel** (bookings dashboard, status changes). Firebase Auth + Firestore. See [PRODUCT.md](ozone-booking/PRODUCT.md) and [DESIGN.md](ozone-booking/DESIGN.md). |
-| [aura-perfume](aura-perfume/) | "SEVENTYNINE": a monochrome luxury fragrance landing page. |
 | [tourism-templates](tourism-templates/) | Two travel templates: **Voyago** (trips) and **Auriga** (coastal hotel and private suites). |
 
 ## Ozone booking: Firebase
