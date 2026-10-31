@@ -61,6 +61,12 @@ with [HyperFrames](https://github.com/heygen-com/hyperframes). Click a preview t
 
 ![GridPad themes](apps/gridpad/tools/shots/themes.png)
 
+**Ozone Studios**: homepage and booking calendar
+
+![Ozone Studios homepage](web/ozone-booking/screenshots/home.jpg)
+
+![Ozone Studios booking](web/ozone-booking/screenshots/booking.jpg)
+
 ## Running the projects
 
 Each folder has its own README with setup steps. Quick versions:
