@@ -1,0 +1,50 @@
+VORTEX — GAMES & APPS CATALOG
+=============================
+Source: client-native/catalog.json
+
+GAMES (17)
+----------
+FPS
+  - Counter-Strike 2
+  - Valorant
+  - Apex Legends
+  - Fortnite
+  - Call of Duty
+  - Overwatch 2
+MOBA
+  - League of Legends
+  - Dota 2
+RPG
+  - Elden Ring
+  - Diablo IV
+  - Baldur's Gate 3
+  - Minecraft
+Action
+  - GTA V
+  - Red Dead 2
+  - Cyberpunk 2077
+Sports
+  - Rocket League
+  - FIFA 26
+
+APPS (14)
+---------
+Browsers
+  - Chrome
+  - Firefox
+Media
+  - YouTube
+  - Netflix
+  - Twitch
+  - Spotify
+  - VLC
+Social
+  - Discord
+  - Telegram
+Creative
+  - OBS Studio
+Launchers
+  - Steam
+  - Epic Games
+  - EA Play
+  - Riot Client

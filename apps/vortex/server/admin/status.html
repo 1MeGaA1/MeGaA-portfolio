@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VORTEX · STATUS</title>
+  <link rel="stylesheet" href="fonts/fonts.css">
+  <link rel="stylesheet" href="admin.css">
+  <style>
+    body { margin: 0; background: var(--bg); color: var(--text-primary); font-family: var(--font-body, 'Chakra Petch', sans-serif); }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 40px 24px 60px; }
+    .brand { font-family: var(--font-display); font-weight: 700; letter-spacing: 3px; font-size: 22px; color: var(--cyan); }
+    .brand small { color: var(--text-muted); font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 11px; letter-spacing: 2px; margin-left: 10px; }
+    .hero { margin: 26px 0 22px; padding: 34px 28px; border: 1px solid var(--border); background: var(--bg-panel);
+            clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px)); text-align: center; }
+    .hero .big { font-family: var(--font-display); font-weight: 700; font-size: 44px; letter-spacing: 4px; line-height: 1.1; }
+    .hero .sub { margin-top: 10px; color: var(--text-muted); font-family: var(--font-mono, monospace); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; }
+    .ok .big { color: var(--green); text-shadow: 0 0 24px rgba(0,255,136,.45); }
+    .ok { border-color: rgba(0,255,136,.5); }
+    .bad .big { color: var(--red); text-shadow: 0 0 24px rgba(255,74,74,.5); }
+    .bad { border-color: rgba(255,74,74,.6); }
+    .wait .big { color: var(--amber); }
+    .label { font-family: var(--font-mono, monospace); font-size: 11px; letter-spacing: 2px; color: var(--cyan); margin: 24px 0 10px; }
+    .row { display: flex; align-items: center; gap: 14px; padding: 12px 14px; border: 1px solid var(--border-dim); background: var(--bg-panel-alt); margin-bottom: 6px; }
+    .dot { width: 12px; height: 12px; border-radius: 50%; flex: none; }
+    .dot.on { background: var(--green); box-shadow: 0 0 10px var(--green); }
+    .dot.off { background: var(--red); box-shadow: 0 0 10px var(--red); }
+    .dot.idle { background: var(--text-faint); }
+    .row .name { font-family: var(--font-display); font-weight: 700; letter-spacing: 1px; font-size: 16px; min-width: 160px; }
+    .row .detail { color: var(--text-muted); font-family: var(--font-mono, monospace); font-size: 12px; word-break: break-all; }
+    .dot.warn { background: var(--amber); box-shadow: 0 0 10px var(--amber); }
+    .disk { padding: 12px 14px; border: 1px solid var(--border-dim); background: var(--bg-panel-alt); margin-bottom: 6px; }
+    .disk-head { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .disk .tag { font-family: var(--font-mono, monospace); font-size: 9px; letter-spacing: 2px; color: var(--cyan); border: 1px solid var(--cyan); padding: 1px 6px; margin-left: 8px; vertical-align: middle; }
+    .bar { height: 8px; background: var(--bg-surface); border: 1px solid var(--border-dim); margin-top: 10px; }
+    .fill { height: 100%; }
+    .fill.on { background: var(--cyan); box-shadow: 0 0 8px rgba(0,229,255,.5); }
+    .fill.warn { background: var(--amber); }
+    .fill.off { background: var(--red); box-shadow: 0 0 8px rgba(255,74,74,.6); }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .kv { padding: 10px 14px; border: 1px solid var(--border-dim); background: var(--bg-panel-alt); }
+    .kv .k { color: var(--text-dim); font-family: var(--font-mono, monospace); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; }
+    .kv .v { margin-top: 4px; font-family: var(--font-mono, monospace); font-size: 13px; color: var(--text-primary); word-break: break-all; }
+    .foot { margin-top: 26px; color: var(--text-faint); font-family: var(--font-mono, monospace); font-size: 11px; letter-spacing: 1px; display: flex; justify-content: space-between; }
+    a { color: var(--cyan); text-decoration: none; }
+    @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } .hero .big { font-size: 32px; } }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">VORTEX <small>// SERVER STATUS</small></div>
+
+  <div id="hero" class="hero wait">
+    <div class="big" id="big">CHECKING…</div>
+    <div class="sub" id="sub">contacting the server</div>
+  </div>
+
+  <div class="label">// CHECKS</div>
+  <div id="checks"></div>
+
+  <div class="label">// STATIONS</div>
+  <div id="stations"><div class="row"><span class="dot idle"></span><span class="detail">no stations yet</span></div></div>
+
+  <div class="label">// HARD DISKS</div>
+  <div id="disks"><div class="row"><span class="dot idle"></span><span class="detail">reading…</span></div></div>
+
+  <div class="label">// SERVER</div>
+  <div class="grid" id="info"></div>
+
+  <div class="foot">
+    <span id="updated">—</span>
+    <span><a href="/admin/">ADMIN PANEL</a> · refreshes every 5 s</span>
+  </div>
+</div>
+
+<script>
+  const $ = (s) => document.querySelector(s);
+  const esc = (t) => String(t ?? '').replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  let failures = 0;
+
+  function fmtUptime(s) {
+    const d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60);
+    return (d ? d + 'd ' : '') + h + 'h ' + m + 'm';
+  }
+
+  function render(st) {
+    const hero = $('#hero');
+    hero.className = 'hero ' + (st.ok ? 'ok' : 'bad');
+    const bad = st.checks.filter((c) => !c.ok);
+    $('#big').textContent = st.ok ? 'ALL SYSTEMS OK' : 'PROBLEM: ' + bad.map((c) => c.name).join(', ').toUpperCase();
+    $('#sub').textContent = st.ok
+      ? `${st.cafe_name} · ${st.checks.length} checks passed · up ${fmtUptime(st.uptime_seconds)}`
+      : bad.map((c) => c.detail).join(' · ');
+    $('#checks').innerHTML = st.checks.map((c) =>
+      `<div class="row"><span class="dot ${c.ok ? 'on' : 'off'}"></span><span class="name">${esc(c.name)}</span><span class="detail">${esc(c.detail)}</span></div>`).join('');
+    if (st.stations.length) {
+      $('#stations').innerHTML = st.stations.map((s) =>
+        `<div class="row"><span class="dot ${s.online ? 'on' : 'idle'}"></span><span class="name">${esc(s.name)}</span><span class="detail">${s.online ? (s.status === 'in_session' ? 'IN SESSION' : 'ONLINE · FREE') : 'OFFLINE'}</span></div>`).join('');
+    }
+    if (st.disks && st.disks.length) {
+      $('#disks').innerHTML = st.disks.map((d) => {
+        const cls = d.low ? 'off' : (d.used_pct > 85 ? 'warn' : 'on');
+        return `<div class="disk">
+          <div class="disk-head"><span class="dot ${cls}"></span><span class="name">${esc(d.drive)}${d.label ? ' · ' + esc(d.label) : ''}${d.data ? ' <span class="tag">VORTEX DATA</span>' : ''}</span>
+            <span class="detail">${d.free_gb.toFixed(1)} GB free · ${d.used_gb.toFixed(1)} of ${d.total_gb.toFixed(1)} GB used (${d.used_pct}%)${d.low ? ' · LOW SPACE' : ''}</span></div>
+          <div class="bar"><div class="fill ${cls}" style="width:${Math.min(100, d.used_pct)}%"></div></div>
+        </div>`;
+      }).join('');
+    }
+    const addr = st.addresses.map((a) => `http://${a}:${st.port}/admin/`);
+    const info = [
+      ['Cafe', st.cafe_name], ['Version', 'v' + st.version],
+      ['Server PC', st.hostname], ['Uptime', fmtUptime(st.uptime_seconds)],
+      ['Server local time', `${st.local_time} (${st.timezone})`], ['Port', st.port],
+      ['Admin panel addresses', addr.join('<br>') || '—'], ['Gaming PCs connect to', st.addresses.map((a) => `ws://${a}:${st.port}`).join('<br>') || '—'],
+    ];
+    $('#info').innerHTML = info.map(([k, v]) => `<div class="kv"><div class="k">${esc(k)}</div><div class="v">${v}</div></div>`).join('');
+    $('#updated').textContent = 'last update ' + new Date().toLocaleTimeString();
+  }
+
+  async function poll() {
+    try {
+      const r = await fetch('/api/status', { cache: 'no-store' });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      failures = 0;
+      render(await r.json());
+    } catch (e) {
+      failures++;
+      if (failures >= 2) {
+        $('#hero').className = 'hero bad';
+        $('#big').textContent = 'SERVER NOT RESPONDING';
+        $('#sub').textContent = 'this page cannot reach the Vortex server (' + e.message + ') — run check_server.bat on the server PC';
+        $('#updated').textContent = 'last attempt ' + new Date().toLocaleTimeString();
+      }
+    }
+  }
+  poll();
+  setInterval(poll, 5000);
+</script>
+</body>
+</html>

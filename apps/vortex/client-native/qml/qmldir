@@ -1,0 +1,24 @@
+singleton Theme 1.0 Theme.qml
+singleton Content 1.0 Content.qml
+VxButton 1.0 VxButton.qml
+VxCard 1.0 VxCard.qml
+VxField 1.0 VxField.qml
+SectionLabel 1.0 SectionLabel.qml
+RingsBackground 1.0 RingsBackground.qml
+HubBackground 1.0 HubBackground.qml
+Toast 1.0 Toast.qml
+GameTile 1.0 GameTile.qml
+FilterChips 1.0 FilterChips.qml
+ShopCard 1.0 ShopCard.qml
+CurrencyCard 1.0 CurrencyCard.qml
+EventCard 1.0 EventCard.qml
+ModalOverlay 1.0 ModalOverlay.qml
+AccountCard 1.0 AccountCard.qml
+HomePage 1.0 HomePage.qml
+GamesPage 1.0 GamesPage.qml
+ShopPage 1.0 ShopPage.qml
+CurrencyPage 1.0 CurrencyPage.qml
+EventsPage 1.0 EventsPage.qml
+Splash 1.0 Splash.qml
+Login 1.0 Login.qml
+Hub 1.0 Hub.qml

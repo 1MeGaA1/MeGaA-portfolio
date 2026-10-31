@@ -1,0 +1,128 @@
+{
+ "app": "gridpad",
+ "version": 1,
+ "sheets": [
+  {
+   "name": "Personal",
+   "cells": {
+    "A1": {
+     "text": "To do",
+     "bold": true,
+     "created": 1787628801,
+     "edited": 1787628801
+    },
+    "B1": {
+     "text": "Ideas",
+     "bold": true,
+     "created": 1787628801,
+     "edited": 1787628801
+    },
+    "C1": {
+     "text": "Shopping",
+     "bold": true,
+     "created": 1787628801,
+     "edited": 1787628801
+    },
+    "D1": {
+     "text": "Reminders",
+     "bold": true,
+     "created": 1787628801,
+     "edited": 1787628801
+    },
+    "E1": {
+     "text": "Links",
+     "bold": true,
+     "created": 1787628801,
+     "edited": 1787628801
+    },
+    "A2": {
+     "text": "Book dentist #admin",
+     "check": "todo",
+     "created": 1787628801,
+     "edited": 1787628801
+    },
+    "B2": {
+     "text": "Weekend trip to the coast in Sept?",
+     "created": 1787628801,
+     "edited": 1787628801
+    },
+    "C2": {
+     "text": "Oat milk, eggs, coffee beans, spinach",
+     "created": 1787628801,
+     "edited": 1787628801
+    },
+    "D2": {
+     "text": "Mum's birthday — 14 Oct",
+     "created": 1787628801,
+     "edited": 1787628801
+    },
+    "E2": {
+     "text": "https://example.com/dentist-booking",
+     "created": 1787628801,
+     "edited": 1787628801
+    },
+    "A3": {
+     "text": "Call plumber re: kitchen leak — quote was £180 #home",
+     "created": 1787628801,
+     "edited": 1787628801
+    },
+    "B3": {
+     "text": "Learn to make sourdough",
+     "created": 1787628801,
+     "edited": 1787628801
+    },
+    "C3": {
+     "text": "Printer ink (black)",
+     "created": 1787628801,
+     "edited": 1787628801
+    },
+    "D3": {
+     "text": "Car MOT due end of month",
+     "created": 1787628801,
+     "edited": 1787628801
+    },
+    "A4": {
+     "text": "Return library books",
+     "check": "done",
+     "created": 1787628801,
+     "edited": 1787628801
+    },
+    "B4": {
+     "text": "Reading list — finish the three half-read ones",
+     "created": 1787628801,
+     "edited": 1787628801
+    },
+    "D4": {
+     "text": "Router password hint: old street name #home",
+     "created": 1787628801,
+     "edited": 1787628801
+    },
+    "A5": {
+     "text": "Renew passport — expires March #admin",
+     "check": "todo",
+     "created": 1787628801,
+     "edited": 1787628801
+    }
+   }
+  },
+  {
+   "name": "Work",
+   "cells": {
+    "A1": {
+     "text": "Standup moved to 10:30 on Thursdays",
+     "created": 1787628801,
+     "edited": 1787628801
+    },
+    "B7": {
+     "text": "Dentist appointment — block 3 pm Thu",
+     "created": 1787628801,
+     "edited": 1787628801
+    }
+   }
+  },
+  {
+   "name": "Projects",
+   "cells": {}
+  }
+ ]
+}

@@ -1,0 +1,5 @@
+# MeGaADesk
+# Host and relay need NOTHING (pure Python standard library).
+# Only the QML viewer (viewer_qml.py) needs Qt:
+PySide6>=6.5
+# The fallback viewer.py needs nothing either (tkinter ships with Python).

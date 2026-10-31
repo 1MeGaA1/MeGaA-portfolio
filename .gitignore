@@ -1,0 +1,23 @@
+__pycache__/
+*.pyc
+.venv/
+build/
+dist/
+*.spec
+*.log
+*.log.*
+
+# Clipper: binaries, per-video projects, personal data, generated assets
+apps/megaa-clipper/tools/
+apps/megaa-clipper/projects/
+apps/megaa-clipper/data/
+apps/megaa-clipper/emoji/
+apps/megaa-clipper/sfx/
+apps/megaa-clipper/.app-profile/
+
+# Vortex: live database, per-PC config, WebView2 profile
+apps/vortex/server/data/
+apps/vortex/client/client.json
+apps/vortex/client-native/client.json
+apps/vortex/client/webview2-profile/
+apps/vortex/client-native/webview2-profile/

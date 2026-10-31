@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ozone Studios — Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css?v=14">
+<link rel="stylesheet" href="admin.css?v=14">
+</head>
+<body class="admin-body">
+
+<!-- ===== LOGIN GATE — visible until authenticated ===== -->
+<div class="admin-gate" id="adminGate" hidden>
+  <div class="admin-gate-card">
+    <a href="../index.html" class="admin-brand admin-gate-brand" aria-label="Ozone Studios">
+      <img class="admin-brand-mark" src="../assets/ozone-mark.png" alt="">
+      <span class="admin-brand-name"><strong>OZONE</strong> <em>Admin</em></span>
+    </a>
+    <p class="admin-eyebrow admin-gate-eye">CONTROL ROOM</p>
+    <h1 class="admin-gate-title">SIGN IN</h1>
+    <p class="admin-gate-sub">Authorized personnel only.</p>
+    <form class="admin-gate-form" id="adminLoginForm" novalidate>
+      <label class="field">
+        <span class="field-label">EMAIL</span>
+        <input type="email" name="email" autocomplete="email" required>
+      </label>
+      <label class="field">
+        <span class="field-label">PASSWORD</span>
+        <input type="password" name="password" autocomplete="current-password" required>
+      </label>
+      <button type="submit" class="btn-pill solid lg admin-gate-submit">SIGN IN</button>
+      <p class="form-status" id="adminLoginStatus" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</div>
+
+<div class="admin-shell" id="adminShell" hidden>
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="admin-side">
+    <a href="../index.html" class="admin-brand" aria-label="Ozone Studios">
+      <img class="admin-brand-mark" src="../assets/ozone-mark.png" alt="">
+      <span class="admin-brand-name"><strong>OZONE</strong> <em>Admin</em></span>
+    </a>
+
+    <nav class="admin-nav" id="adminNav" aria-label="Admin">
+      <a href="#dashboard" data-route="dashboard" class="is-active">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3"  y="3"  width="8" height="8" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <rect x="13" y="3"  width="8" height="5" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <rect x="13" y="10" width="8" height="11" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <rect x="3"  y="13" width="8" height="8" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+        <span>Dashboard</span>
+      </a>
+      <a href="#bookings" data-route="bookings">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="8" y1="3" x2="8" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="16" y1="3" x2="16" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M8 15l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Bookings</span>
+        <span class="nav-badge" id="navBookingsBadge" hidden></span>
+      </a>
+      <a href="#offers" data-route="offers">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3 12L12 3h8v8l-9 9z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          <circle cx="16.5" cy="7.5" r="1.2" fill="currentColor"/>
+        </svg>
+        <span>Offers &amp; Deals</span>
+      </a>
+      <a href="#beats" data-route="beats">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M9 18V6l12-2v12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="6" cy="18" r="3" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <circle cx="18" cy="16" r="3" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+        <span>Songs &amp; Beats</span>
+      </a>
+      <a href="#clients" data-route="clients">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="9" cy="8" r="3.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M3 20c0-3 3-5 6-5s6 2 6 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="17" cy="9" r="2.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M15 20c0-2 2-3 4-3s2.5 1 2.5 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span>Clients</span>
+      </a>
+    </nav>
+
+    <div class="admin-side-foot">
+      <p class="admin-side-user" id="adminSideUser" hidden></p>
+      <button type="button" class="admin-side-link admin-side-signout" id="adminSignOut">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>SIGN OUT</span>
+      </button>
+      <a href="../index.html" class="admin-side-link">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>BACK TO SITE</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- ===== MAIN ===== -->
+  <main class="admin-main">
+
+    <header class="admin-topbar">
+      <div>
+        <p class="admin-eyebrow" id="adminEyebrow">OZONE STUDIOS / ADMIN</p>
+        <h1 class="admin-page-title" id="adminPageTitle">Dashboard</h1>
+      </div>
+      <div class="admin-topbar-actions" id="adminTopbarActions"></div>
+    </header>
+
+    <div class="admin-content">
+
+      <!-- ===== DASHBOARD ===== -->
+      <section class="admin-panel" data-panel="dashboard">
+
+        <!-- Now panel — the pending count, big -->
+        <section class="now-panel">
+          <div class="now-panel-main">
+            <p class="now-panel-eyebrow">PENDING — NEEDS YOUR REPLY</p>
+            <div class="now-panel-value">
+              <span class="now-panel-number" id="nowPending">0</span>
+              <span class="now-panel-noun" id="nowPendingNoun">bookings</span>
+            </div>
+            <p class="now-panel-next" id="nowNext">All caught up.</p>
+          </div>
+          <a class="btn-pill solid lg now-panel-cta" href="#bookings">OPEN BOOKINGS →</a>
+        </section>
+
+        <!-- Stat strip — horizontal Orbitron numbers -->
+        <section class="stat-strip" aria-label="Studio overview">
+          <div class="stat-cell">
+            <span class="stat-cell-label">TOTAL BOOKINGS</span>
+            <span class="stat-cell-value" id="statBookings">0</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-cell-label">ACTIVE OFFERS</span>
+            <span class="stat-cell-value" id="statOffers">0</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-cell-label">BEAT LIBRARY</span>
+            <span class="stat-cell-value" id="statBeats">0</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-cell-label">UNIQUE CLIENTS</span>
+            <span class="stat-cell-value" id="statClients">0</span>
+          </div>
+        </section>
+
+        <div class="dash-grid">
+          <section class="admin-card">
+            <header class="admin-card-head">
+              <p class="admin-eyebrow">RECENT</p>
+              <h3 class="admin-card-title">Latest Bookings</h3>
+              <a href="#bookings" class="admin-card-link">VIEW ALL →</a>
+            </header>
+            <div class="admin-rows" id="dashBookingsBody" aria-live="polite"></div>
+            <p class="data-empty" id="dashBookingsEmpty" hidden>No bookings yet.</p>
+          </section>
+
+          <section class="admin-card">
+            <header class="admin-card-head">
+              <p class="admin-eyebrow">QUICK ACTION</p>
+              <h3 class="admin-card-title">Add a Beat</h3>
+              <a href="#beats" class="admin-card-link">FULL EDITOR →</a>
+            </header>
+            <form class="admin-form" id="quickBeatForm" novalidate>
+              <label class="field">
+                <span class="field-label">TRACK NAME</span>
+                <input type="text" name="name" placeholder="e.g. Midnight Trap" required>
+              </label>
+              <div class="form-row">
+                <label class="field">
+                  <span class="field-label">GENRE</span>
+                  <select name="genre" required>
+                    <option>TRAP</option>
+                    <option>DRILL</option>
+                    <option>R&B</option>
+                    <option>POP</option>
+                    <option>AFRO</option>
+                  </select>
+                </label>
+                <label class="field">
+                  <span class="field-label">BPM</span>
+                  <input type="number" name="bpm" placeholder="140" min="40" max="240" required>
+                </label>
+              </div>
+              <div class="form-row">
+                <label class="field">
+                  <span class="field-label">PRICE (EGP)</span>
+                  <input type="number" name="price" placeholder="500" min="0" required>
+                </label>
+                <label class="field">
+                  <span class="field-label">LICENSE</span>
+                  <select name="license" required>
+                    <option>MP3 Lease</option>
+                    <option>WAV Lease</option>
+                    <option>Unlimited</option>
+                    <option>Exclusive</option>
+                  </select>
+                </label>
+              </div>
+              <button type="submit" class="btn-pill solid">+ ADD TO LIBRARY</button>
+              <p class="form-status" id="quickBeatStatus" role="status" aria-live="polite"></p>
+            </form>
+          </section>
+        </div>
+      </section>
+
+      <!-- ===== BOOKINGS ===== -->
+      <section class="admin-panel" data-panel="bookings" hidden>
+        <div class="filter-stack">
+          <div class="filter-row">
+            <span class="filter-row-label">STATUS</span>
+            <div class="filter-rail" id="bookingFilters" role="tablist" aria-label="Filter bookings by status">
+              <button class="filter-pill is-active" data-status="ALL" type="button">ALL</button>
+              <button class="filter-pill" data-status="PENDING" type="button">PENDING</button>
+              <button class="filter-pill" data-status="CONFIRMED" type="button">CONFIRMED</button>
+              <button class="filter-pill" data-status="IN_PROGRESS" type="button">IN PROGRESS</button>
+              <button class="filter-pill" data-status="DONE" type="button">DONE</button>
+              <button class="filter-pill" data-status="CANCELLED" type="button">CANCELLED</button>
+            </div>
+          </div>
+          <div class="filter-row">
+            <span class="filter-row-label">DATE</span>
+            <div class="filter-rail" id="bookingDateFilters" role="tablist" aria-label="Filter bookings by date">
+              <button class="filter-pill is-active" data-range="ALL" type="button">ALL TIME</button>
+              <button class="filter-pill" data-range="TODAY" type="button">TODAY</button>
+              <button class="filter-pill" data-range="YESTERDAY" type="button">YESTERDAY</button>
+              <button class="filter-pill" data-range="WEEK" type="button">THIS WEEK</button>
+              <button class="filter-pill" data-range="MONTH" type="button">THIS MONTH</button>
+              <button class="filter-pill" data-range="UPCOMING" type="button">UPCOMING</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-rows" id="bookingsBody" aria-live="polite"></div>
+        <p class="data-empty" id="bookingsEmpty" hidden>No bookings match this filter.</p>
+      </section>
+
+      <!-- ===== OFFERS ===== -->
+      <section class="admin-panel" data-panel="offers" hidden>
+        <p class="panel-blurb">Promotions and special deals shown to studio visitors.</p>
+        <div class="offers-grid" id="offersGrid"></div>
+        <p class="data-empty" id="offersEmpty" hidden>No offers yet. Add one to get started.</p>
+
+        <section class="admin-card admin-card-form">
+          <header class="admin-card-head">
+            <p class="admin-eyebrow">EDIT</p>
+            <h3 class="admin-card-title" id="offerFormTitle">Create Offer</h3>
+            <button type="button" class="link-btn" id="offerFormReset" hidden>CANCEL EDIT</button>
+          </header>
+          <form id="offerForm" class="admin-form" novalidate>
+            <input type="hidden" name="entityId">
+            <label class="field">
+              <span class="field-label">TITLE</span>
+              <input type="text" name="title" placeholder="e.g. Studio Hours x2" required>
+            </label>
+            <label class="field">
+              <span class="field-label">DESCRIPTION</span>
+              <textarea name="description" rows="2" placeholder="What does this offer include?"></textarea>
+            </label>
+            <div class="form-row">
+              <label class="field">
+                <span class="field-label">DISCOUNT</span>
+                <input type="text" name="discount" placeholder="e.g. 20% OFF or 2-FOR-1">
+              </label>
+              <label class="field">
+                <span class="field-label">VALID UNTIL</span>
+                <input type="date" name="validUntil">
+              </label>
+            </div>
+            <button type="submit" class="btn-pill solid" id="offerFormSubmit">+ ADD OFFER</button>
+            <p class="form-status" id="offerStatus" role="status" aria-live="polite"></p>
+          </form>
+        </section>
+      </section>
+
+      <!-- ===== BEATS ===== -->
+      <section class="admin-panel" data-panel="beats" hidden>
+        <div class="beats-admin-grid">
+
+          <aside class="admin-card admin-card-form">
+            <header class="admin-card-head">
+              <p class="admin-eyebrow">LIBRARY</p>
+              <h3 class="admin-card-title" id="beatFormTitle">Add Beat</h3>
+              <button type="button" class="link-btn" id="beatFormReset" hidden>CANCEL EDIT</button>
+            </header>
+            <form id="beatForm" class="admin-form" novalidate>
+              <input type="hidden" name="entityId">
+              <label class="field">
+                <span class="field-label">TRACK NAME</span>
+                <input type="text" name="name" placeholder="e.g. Cairo Nights" required>
+              </label>
+              <div class="form-row">
+                <label class="field">
+                  <span class="field-label">GENRE</span>
+                  <select name="genre" required>
+                    <option>TRAP</option>
+                    <option>DRILL</option>
+                    <option>R&B</option>
+                    <option>POP</option>
+                    <option>AFRO</option>
+                  </select>
+                </label>
+                <label class="field">
+                  <span class="field-label">BPM</span>
+                  <input type="number" name="bpm" placeholder="140" min="40" max="240" required>
+                </label>
+              </div>
+              <div class="form-row">
+                <label class="field">
+                  <span class="field-label">PRICE (EGP)</span>
+                  <input type="number" name="price" placeholder="500" min="0" required>
+                </label>
+                <label class="field">
+                  <span class="field-label">LICENSE</span>
+                  <select name="license" required>
+                    <option>MP3 Lease</option>
+                    <option>WAV Lease</option>
+                    <option>Unlimited</option>
+                    <option>Exclusive</option>
+                  </select>
+                </label>
+              </div>
+              <label class="field">
+                <span class="field-label">COVER ICON</span>
+                <div class="icon-picker" id="iconPicker">
+                  <label><input type="radio" name="icon" value="moon" checked><span data-icon="moon" class="icon-chip"></span></label>
+                  <label><input type="radio" name="icon" value="keys"><span data-icon="keys" class="icon-chip"></span></label>
+                  <label><input type="radio" name="icon" value="flame"><span data-icon="flame" class="icon-chip"></span></label>
+                  <label><input type="radio" name="icon" value="spark"><span data-icon="spark" class="icon-chip"></span></label>
+                  <label><input type="radio" name="icon" value="wave"><span data-icon="wave" class="icon-chip"></span></label>
+                  <label><input type="radio" name="icon" value="diamond"><span data-icon="diamond" class="icon-chip"></span></label>
+                </div>
+              </label>
+              <button type="submit" class="btn-pill solid" id="beatFormSubmit">+ ADD TO LIBRARY</button>
+              <p class="form-status" id="beatStatus" role="status" aria-live="polite"></p>
+            </form>
+          </aside>
+
+          <section class="admin-card">
+            <header class="admin-card-head">
+              <p class="admin-eyebrow">CATALOG</p>
+              <h3 class="admin-card-title">Beat Library</h3>
+              <span class="admin-card-meta" id="beatCount">0 beats</span>
+            </header>
+            <div class="admin-rows" id="beatsBody"></div>
+            <p class="data-empty" id="beatsEmpty" hidden>No beats yet — add one with the form on the left.</p>
+          </section>
+
+        </div>
+      </section>
+
+      <!-- ===== CLIENTS ===== -->
+      <section class="admin-panel" data-panel="clients" hidden>
+        <p class="panel-blurb">Auto-generated from booking submissions.</p>
+        <div class="admin-rows" id="clientsBody"></div>
+        <p class="data-empty" id="clientsEmpty" hidden>No clients yet.</p>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<script type="module" src="../assets/firebase-init.js?v=14"></script>
+<script src="admin.js?v=14"></script>
+<script src="../assets/bot-widget.js?v=14"></script>
+</body>
+</html>

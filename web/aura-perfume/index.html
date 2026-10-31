@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SEVENTYNINE — Fragrance</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syncopate', 'sans-serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            ink: {
+              900: '#000000',
+              800: '#050505',
+              700: '#0a0a0a',
+              500: '#1a1a1a',
+            },
+            aura: {
+              violet: '#ffffff',
+              ice:    '#e6e6e6',
+              gold:   '#cfcfcf',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :root {
+      --grad-a: #000000;
+      --grad-b: #050505;
+      --grad-c: #0e0e0e;
+      --grad-d: #161616;
+    }
+
+    html, body { background: #000000; color: #f5f5f5; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 300;
+      letter-spacing: 0.01em;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse 70% 55% at 20% 0%,  rgba(255, 255, 255, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 85% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 60% at 50% 110%, rgba(255, 255, 255, 0.04) 0%, transparent 65%),
+        linear-gradient(180deg, var(--grad-a) 0%, var(--grad-b) 100%);
+      background-attachment: fixed;
+      animation: breathe 16s ease-in-out infinite alternate;
+    }
+
+    @keyframes breathe {
+      0%   { filter: brightness(1.00) contrast(1.00); background-size: 100% 100%; }
+      50%  { filter: brightness(1.08) contrast(1.02); }
+      100% { filter: brightness(0.96) contrast(1.00); background-size: 115% 115%; }
+    }
+
+    .display { font-family: 'Syncopate', sans-serif; letter-spacing: 0.18em; }
+
+    .glass {
+      background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(18px) saturate(140%);
+      -webkit-backdrop-filter: blur(18px) saturate(140%);
+    }
+    .glass-strong {
+      background: linear-gradient(135deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.03) 100%);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(22px) saturate(160%);
+      -webkit-backdrop-filter: blur(22px) saturate(160%);
+    }
+    .hairline { border-color: rgba(255,255,255,0.08); }
+    .text-mute { color: rgba(232, 236, 255, 0.62); }
+
+    .ring-soft {
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.05),
+        0 30px 80px -25px rgba(0, 30, 100, 0.55),
+        inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+
+    .float { animation: float 9s ease-in-out infinite; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-12px); }
+    }
+
+    .canvas-stage {
+      background:
+        radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.14) 0%, transparent 35%),
+        radial-gradient(circle at 50% 65%, rgba(255, 255, 255, 0.06) 0%, transparent 55%),
+        radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0.08) 0%, transparent 70%),
+        #050505;
+    }
+
+    .bottle-mock {
+      background: linear-gradient(180deg, rgba(255,255,255,0.28) 0%, rgba(255,255,255,0.10) 45%, rgba(0,0,0,0.35) 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.45),
+        inset 0 -22px 40px rgba(0, 0, 0, 0.55),
+        0 40px 80px -20px rgba(0, 0, 0, 0.6);
+    }
+
+    .grain::before {
+      content: '';
+      position: fixed; inset: 0; pointer-events: none; z-index: 1;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='4'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+      opacity: 0.55; mix-blend-mode: overlay;
+    }
+
+    .scroll-cue::after {
+      content: '';
+      display: block;
+      width: 1px; height: 28px;
+      margin: 8px auto 0;
+      background: linear-gradient(180deg, rgba(232,236,255,0.6), transparent);
+      animation: cue 2.4s ease-in-out infinite;
+      transform-origin: top;
+    }
+    @keyframes cue {
+      0%, 100% { transform: scaleY(0.4); opacity: 0.35; }
+      50%      { transform: scaleY(1.0); opacity: 1; }
+    }
+
+    .marquee {
+      mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+    }
+    .marquee-track { animation: marquee 40s linear infinite; }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+  </style>
+</head>
+
+<body class="grain antialiased selection:bg-aura-violet/40 selection:text-white">
+
+  <!-- NAV -->
+  <header class="fixed top-0 inset-x-0 z-50">
+    <nav class="mx-auto max-w-7xl px-6 lg:px-10">
+      <div class="mt-4 glass rounded-full px-6 py-3 flex items-center justify-between">
+        <a href="#" class="display text-[11px] tracking-[0.45em] text-white flex items-center gap-3">
+          <img src="./logo.png" alt="79" class="h-5 w-auto opacity-90" onerror="this.style.display='none'">
+          SEVENTYNINE
+        </a>
+        <ul class="hidden md:flex items-center gap-9 text-[10px] uppercase tracking-[0.3em] text-mute">
+          <li><a href="#collection"  class="hover:text-white transition">Collection</a></li>
+          <li><a href="#profile"     class="hover:text-white transition">Scent Profile</a></li>
+          <li><a href="#ingredients" class="hover:text-white transition">Ingredients</a></li>
+          <li><a href="#journal"     class="hover:text-white transition">Journal</a></li>
+        </ul>
+        <a href="#shop" class="text-[10px] uppercase tracking-[0.3em] glass-strong px-4 py-2 rounded-full hover:bg-white/10 transition">
+          Discover
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative min-h-[100svh] pt-36 pb-24 px-6 lg:px-10">
+    <div class="mx-auto max-w-7xl grid lg:grid-cols-12 gap-10 items-center">
+
+      <div class="lg:col-span-6 relative z-10">
+        <p class="text-[10px] uppercase tracking-[0.5em] text-aura-ice/80 mb-7 flex items-center gap-3">
+          <span class="inline-block w-6 h-px bg-aura-ice/60"></span>
+          Edition · MMXXVI
+        </p>
+
+        <h1 class="display font-normal text-white leading-[0.95] text-[clamp(3rem,8vw,6.5rem)]">
+          Wear<br/>
+          the<br/>
+          <span class="text-aura-violet">Future.</span>
+        </h1>
+
+        <p class="mt-9 max-w-md text-mute leading-relaxed">
+          A cyber-botanical fragrance laboratory crafting molecular scents
+          that respond to skin chemistry, weather, and intention.
+        </p>
+
+        <div class="mt-10 flex items-center gap-5">
+          <a href="#" class="glass-strong px-6 py-3 rounded-full text-[10px] uppercase tracking-[0.35em] hover:bg-white/10 transition">
+            Enter the Lab
+          </a>
+          <a href="#" class="text-[10px] uppercase tracking-[0.35em] text-mute hover:text-white transition">
+            View Collection →
+          </a>
+        </div>
+
+        <div class="mt-16 flex items-center gap-8 text-[10px] uppercase tracking-[0.3em] text-mute">
+          <span><span class="text-white">07</span> Compositions</span>
+          <span class="w-px h-3 bg-white/15"></span>
+          <span><span class="text-white">12hr</span> Sillage</span>
+          <span class="w-px h-3 bg-white/15"></span>
+          <span><span class="text-white">∞</span> Pairings</span>
+        </div>
+      </div>
+
+      <!-- 3D canvas placeholder slot -->
+      <div class="lg:col-span-6 relative">
+        <div id="bottle-canvas"
+             class="relative aspect-square canvas-stage rounded-[2rem] overflow-hidden float ring-soft">
+
+          <!-- mock bottle silhouette — replaced by Three.js in Phase 2 -->
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="relative">
+              <div class="w-44 h-72 rounded-[42%] bottle-mock"></div>
+              <div class="absolute left-1/2 -translate-x-1/2 -top-7 w-16 h-7 rounded-md bottle-mock"></div>
+              <div class="absolute left-1/2 -translate-x-1/2 -top-12 w-10 h-6 rounded bottle-mock"></div>
+            </div>
+          </div>
+
+          <!-- HUD corners -->
+          <div class="absolute top-4 left-4 right-4 flex justify-between text-[9px] uppercase tracking-[0.4em] text-aura-ice/60">
+            <span>// webgl · ready</span>
+            <span>r · 360°</span>
+          </div>
+          <div class="absolute bottom-4 left-4 right-4 flex justify-between text-[9px] uppercase tracking-[0.4em] text-aura-ice/60">
+            <span>n°01 · iridium</span>
+            <span>50ml</span>
+          </div>
+
+          <!-- crosshair -->
+          <div class="absolute inset-0 pointer-events-none flex items-center justify-center opacity-30">
+            <div class="w-px h-1/3 bg-white/40 absolute"></div>
+            <div class="h-px w-1/3 bg-white/40 absolute"></div>
+          </div>
+        </div>
+
+        <!-- chip caption -->
+        <div class="absolute -bottom-4 left-6 glass rounded-full px-4 py-2 text-[10px] uppercase tracking-[0.3em]">
+          <span class="text-aura-violet">●</span>
+          <span class="ml-2 text-mute">awaiting · three.js scene</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- scroll cue -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-[9px] uppercase tracking-[0.5em] text-mute scroll-cue">
+      scroll
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <section class="relative py-6 border-y hairline overflow-hidden marquee">
+    <div class="marquee-track flex gap-16 whitespace-nowrap text-[11px] uppercase tracking-[0.5em] text-mute">
+      <span class="display">Iridium</span><span>·</span>
+      <span class="display">Velvet Drift</span><span>·</span>
+      <span class="display">Obsidian Bloom</span><span>·</span>
+      <span class="display">Pale Signal</span><span>·</span>
+      <span class="display">Halogen Rose</span><span>·</span>
+      <span class="display">Cobalt Hour</span><span>·</span>
+      <!-- duplicate for seamless loop -->
+      <span class="display">Iridium</span><span>·</span>
+      <span class="display">Velvet Drift</span><span>·</span>
+      <span class="display">Obsidian Bloom</span><span>·</span>
+      <span class="display">Pale Signal</span><span>·</span>
+      <span class="display">Halogen Rose</span><span>·</span>
+      <span class="display">Cobalt Hour</span><span>·</span>
+    </div>
+  </section>
+
+  <!-- SCENT PROFILE -->
+  <section id="profile" class="relative px-6 lg:px-10 py-32">
+    <div class="mx-auto max-w-7xl">
+
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-16">
+        <div>
+          <p class="text-[10px] uppercase tracking-[0.5em] text-aura-ice/80 mb-4 flex items-center gap-3">
+            <span class="inline-block w-6 h-px bg-aura-ice/60"></span>
+            02 — Scent Profile
+          </p>
+          <h2 class="display text-3xl md:text-5xl text-white leading-tight">
+            Molecular<br/>Architectures.
+          </h2>
+        </div>
+        <p class="text-mute max-w-sm text-sm leading-relaxed">
+          Each formulation is a layered system — a top, a heart, a base —
+          engineered to evolve across twelve hours on the skin.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+
+        <!-- card 1 -->
+        <article class="glass rounded-2xl p-8 ring-soft transition-transform duration-500 hover:-translate-y-2 hover:bg-white/[0.04]">
+          <div class="flex items-center justify-between mb-12">
+            <span class="display text-[11px] tracking-[0.4em] text-aura-violet">N°01</span>
+            <span class="text-[9px] uppercase tracking-[0.4em] text-mute">Top · 0–2hr</span>
+          </div>
+          <h3 class="display text-xl text-white mb-3">Iridium</h3>
+          <p class="text-sm text-mute leading-relaxed">
+            Cold citrus and electric ozone, opening like static against winter glass.
+          </p>
+          <div class="mt-12 pt-6 border-t hairline flex justify-between text-[9px] uppercase tracking-[0.3em] text-mute">
+            <span>Bergamot</span><span>Pink Pepper</span><span>Ozone</span>
+          </div>
+        </article>
+
+        <!-- card 2 -->
+        <article class="glass rounded-2xl p-8 ring-soft transition-transform duration-500 hover:-translate-y-2 hover:bg-white/[0.04]">
+          <div class="flex items-center justify-between mb-12">
+            <span class="display text-[11px] tracking-[0.4em] text-aura-violet">N°02</span>
+            <span class="text-[9px] uppercase tracking-[0.4em] text-mute">Heart · 2–6hr</span>
+          </div>
+          <h3 class="display text-xl text-white mb-3">Velvet Drift</h3>
+          <p class="text-sm text-mute leading-relaxed">
+            Iris and synthetic violet, woven through a quiet thread of warm steel.
+          </p>
+          <div class="mt-12 pt-6 border-t hairline flex justify-between text-[9px] uppercase tracking-[0.3em] text-mute">
+            <span>Iris</span><span>Violet</span><span>Suede</span>
+          </div>
+        </article>
+
+        <!-- card 3 -->
+        <article class="glass rounded-2xl p-8 ring-soft transition-transform duration-500 hover:-translate-y-2 hover:bg-white/[0.04]">
+          <div class="flex items-center justify-between mb-12">
+            <span class="display text-[11px] tracking-[0.4em] text-aura-violet">N°03</span>
+            <span class="text-[9px] uppercase tracking-[0.4em] text-mute">Base · 6–12hr</span>
+          </div>
+          <h3 class="display text-xl text-white mb-3">Obsidian Bloom</h3>
+          <p class="text-sm text-mute leading-relaxed">
+            Ambergris and black tea resin, settling deep with a long phosphorescent trail.
+          </p>
+          <div class="mt-12 pt-6 border-t hairline flex justify-between text-[9px] uppercase tracking-[0.3em] text-mute">
+            <span>Ambergris</span><span>Black Tea</span><span>Vetiver</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- INGREDIENTS PREVIEW (anchor for Phase 4 scroll-trigger) -->
+  <section id="ingredients" class="relative px-6 lg:px-10 py-32">
+    <div class="mx-auto max-w-7xl grid lg:grid-cols-12 gap-10 items-center">
+      <div class="lg:col-span-5">
+        <p class="text-[10px] uppercase tracking-[0.5em] text-aura-ice/80 mb-4 flex items-center gap-3">
+          <span class="inline-block w-6 h-px bg-aura-ice/60"></span>
+          03 — Ingredients
+        </p>
+        <h2 class="display text-3xl md:text-5xl text-white leading-tight">
+          Sourced<br/>at the<br/>Edge.
+        </h2>
+        <p class="mt-8 max-w-md text-mute leading-relaxed">
+          Hokkaido iris, Calabrian bergamot, lab-cultured ambergris.
+          Every molecule is traceable to its origin coordinate.
+        </p>
+      </div>
+
+      <div class="lg:col-span-7 grid grid-cols-2 gap-3">
+        <div class="glass rounded-xl p-5 aspect-square flex flex-col justify-between">
+          <span class="text-[9px] uppercase tracking-[0.4em] text-mute">43.0°N · 141.3°E</span>
+          <span class="display text-aura-ice text-sm">Iris · Hokkaido</span>
+        </div>
+        <div class="glass rounded-xl p-5 aspect-square flex flex-col justify-between">
+          <span class="text-[9px] uppercase tracking-[0.4em] text-mute">39.3°N · 16.2°E</span>
+          <span class="display text-aura-ice text-sm">Bergamot · Calabria</span>
+        </div>
+        <div class="glass rounded-xl p-5 aspect-square flex flex-col justify-between">
+          <span class="text-[9px] uppercase tracking-[0.4em] text-mute">lab · 04</span>
+          <span class="display text-aura-ice text-sm">Ambergris · Synth</span>
+        </div>
+        <div class="glass rounded-xl p-5 aspect-square flex flex-col justify-between">
+          <span class="text-[9px] uppercase tracking-[0.4em] text-mute">35.6°N · 139.7°E</span>
+          <span class="display text-aura-ice text-sm">Yuzu · Tokyo</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="relative px-6 lg:px-10 py-10 border-t hairline">
+    <div class="mx-auto max-w-7xl flex flex-col md:flex-row items-center justify-between gap-4 text-[10px] uppercase tracking-[0.4em] text-mute">
+      <span class="display tracking-[0.5em] text-white">SEVENTYNINE</span>
+      <span>© MMXXVI — SeventyNine · Brooklyn / Tokyo</span>
+      <span>Phase 01 · UI Shell</span>
+    </div>
+  </footer>
+
+</body>
+</html>

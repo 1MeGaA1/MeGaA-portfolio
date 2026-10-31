@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AURIGA — Coastal Hotel & Private Suites</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0A0A0A;
+  --paper: #FFFFFF;
+  --bone: #F8F6F1;
+  --line: #1A1A1A;
+  --rule: #DDD9D2;
+  --soft: #8C8884;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.65;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+.container { max-width: 1320px; margin: 0 auto; padding: 0 32px; }
+.container-narrow { max-width: 960px; margin: 0 auto; padding: 0 32px; }
+
+/* ============ TOP BAR ============ */
+.top-bar {
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.top-bar-inner {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 32px;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+.top-bar-left { display: flex; gap: 24px; opacity: 0.85; }
+.top-bar-right { display: flex; gap: 20px; opacity: 0.85; }
+.top-bar a { transition: opacity 0.2s; }
+.top-bar a:hover { opacity: 1; color: white; }
+
+/* ============ HEADER ============ */
+.header {
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+  position: sticky; top: 0; z-index: 100;
+}
+.nav {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 22px 0;
+  gap: 32px;
+}
+.nav-left, .nav-right {
+  display: flex; gap: 36px; list-style: none;
+}
+.nav-right { justify-content: flex-end; }
+.nav-left a, .nav-right a {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+.nav-left a:hover, .nav-right a:hover { opacity: 0.5; }
+.logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: 32px;
+  letter-spacing: 0.32em;
+  text-align: center;
+}
+.logo-tag {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.4em;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--soft);
+  margin-top: 2px;
+}
+
+/* ============ HERO ============ */
+.hero {
+  position: relative;
+  height: 92vh;
+  min-height: 640px;
+  overflow: hidden;
+  background: var(--ink);
+}
+.hero-image {
+  position: absolute; inset: 0;
+}
+.hero-image img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%) contrast(1.05);
+}
+.hero-image::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, transparent 30%, transparent 60%, rgba(0,0,0,0.5) 100%);
+}
+.hero-content {
+  position: relative;
+  height: 100%;
+  display: flex; flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 80px;
+  color: var(--paper);
+  z-index: 2;
+}
+.hero-eyebrow {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  margin-bottom: 28px;
+  opacity: 0.85;
+  display: flex; align-items: center; gap: 12px;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 32px; height: 1px;
+  background: currentColor;
+}
+.hero h1 {
+  font-size: clamp(54px, 9vw, 128px);
+  font-weight: 400;
+  line-height: 0.95;
+  max-width: 1000px;
+  margin-bottom: 24px;
+}
+.hero h1 em {
+  font-style: italic;
+  font-weight: 400;
+}
+.hero-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  max-width: 420px;
+  opacity: 0.9;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* ============ RESERVATION PANEL ============ */
+.reservation-panel {
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  margin-top: -60px;
+  position: relative;
+  z-index: 10;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 36px 40px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr auto;
+  gap: 32px;
+  align-items: end;
+}
+.res-field { display: flex; flex-direction: column; }
+.res-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--soft);
+  margin-bottom: 8px;
+}
+.res-input, .res-input select {
+  border: none;
+  border-bottom: 1px solid var(--ink);
+  background: transparent;
+  padding: 8px 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--ink);
+  outline: none;
+  width: 100%;
+}
+.res-input::placeholder { color: var(--soft); }
+
+.btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  padding: 14px 28px;
+  border: 1px solid currentColor;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.3s;
+  display: inline-block;
+  font-weight: 500;
+  text-align: center;
+}
+.btn:hover { background: var(--ink); color: var(--paper); }
+.btn-solid {
+  background: var(--ink);
+  color: var(--paper);
+}
+.btn-solid:hover { background: var(--paper); color: var(--ink); }
+.btn-light { color: var(--paper); }
+.btn-light:hover { background: var(--paper); color: var(--ink); }
+
+/* ============ INTRO ============ */
+.intro { padding: 140px 0 100px; }
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 96px;
+  align-items: start;
+}
+.section-eyebrow {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  margin-bottom: 24px;
+  color: var(--soft);
+  display: flex; align-items: center; gap: 12px;
+}
+.section-eyebrow::before {
+  content: '';
+  width: 24px; height: 1px;
+  background: var(--soft);
+}
+.intro h2 {
+  font-size: clamp(42px, 5vw, 72px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.intro h2 em { font-style: italic; }
+.intro-body p {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--ink);
+  margin-bottom: 24px;
+  font-weight: 300;
+}
+.intro-body p:last-child { margin-bottom: 0; }
+.intro-signature {
+  margin-top: 40px;
+  display: flex; gap: 16px; align-items: center;
+}
+.signature-mark {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 28px;
+  font-weight: 400;
+}
+.signature-details {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--soft);
+}
+
+/* ============ SUITES ============ */
+.suites {
+  background: var(--bone);
+  padding: 140px 0;
+}
+.suites-head {
+  text-align: center;
+  margin-bottom: 96px;
+}
+.suites-head h2 {
+  font-size: clamp(48px, 6vw, 88px);
+  font-weight: 400;
+  margin-bottom: 18px;
+}
+.suites-head p {
+  color: var(--soft);
+  font-size: 17px;
+  max-width: 540px;
+  margin: 0 auto;
+  font-weight: 300;
+}
+.suites-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.suite {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 80px;
+  align-items: center;
+  padding: 80px 0;
+  border-top: 1px solid var(--rule);
+}
+.suite:last-child { border-bottom: 1px solid var(--rule); }
+.suite:nth-child(even) {
+  grid-template-columns: 1fr 1.2fr;
+}
+.suite:nth-child(even) .suite-image { order: 2; }
+.suite-image {
+  aspect-ratio: 5/6;
+  overflow: hidden;
+}
+.suite-image img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%);
+  transition: transform 1.2s, filter 0.6s;
+}
+.suite:hover .suite-image img {
+  transform: scale(1.04);
+  filter: grayscale(60%);
+}
+.suite-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--soft);
+  margin-bottom: 16px;
+  display: flex; gap: 16px; align-items: center;
+}
+.suite-number::before {
+  content: '';
+  width: 20px; height: 1px;
+  background: var(--soft);
+}
+.suite-content h3 {
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+.suite-content p {
+  color: var(--ink);
+  font-size: 16px;
+  margin-bottom: 32px;
+  font-weight: 300;
+  max-width: 480px;
+}
+.suite-specs {
+  display: flex; gap: 32px;
+  padding: 24px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 32px;
+}
+.suite-spec {
+  display: flex; flex-direction: column;
+}
+.spec-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--soft);
+  margin-bottom: 4px;
+}
+.spec-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  font-weight: 500;
+}
+.suite-footer {
+  display: flex; align-items: end; justify-content: space-between;
+  gap: 24px;
+}
+.suite-price {
+  font-family: 'Cormorant Garamond', serif;
+}
+.suite-price strong {
+  font-size: 44px;
+  font-weight: 500;
+  display: block;
+  line-height: 1;
+}
+.suite-price span {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--soft);
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+}
+
+/* ============ EXPERIENCES ============ */
+.experiences { padding: 140px 0; }
+.exp-head {
+  display: flex; justify-content: space-between; align-items: end;
+  margin-bottom: 80px;
+  gap: 32px;
+}
+.exp-head h2 {
+  font-size: clamp(42px, 5vw, 72px);
+  font-weight: 400;
+}
+.exp-head p {
+  color: var(--soft);
+  max-width: 380px;
+  font-size: 16px;
+  font-weight: 300;
+}
+.exp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.exp-card {
+  cursor: pointer;
+}
+.exp-image {
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.exp-image img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%);
+  transition: transform 0.8s, filter 0.5s;
+}
+.exp-card:hover .exp-image img {
+  transform: scale(1.04);
+  filter: grayscale(60%);
+}
+.exp-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--soft);
+  margin-bottom: 10px;
+}
+.exp-card h3 {
+  font-size: 28px;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+.exp-card p {
+  color: var(--soft);
+  font-size: 14px;
+  font-weight: 300;
+}
+
+/* ============ GALLERY ============ */
+.gallery {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 140px 0;
+}
+.gallery h2 { color: var(--paper); }
+.gallery .section-eyebrow { color: rgba(255,255,255,0.5); }
+.gallery .section-eyebrow::before { background: rgba(255,255,255,0.5); }
+.gallery-head { text-align: center; margin-bottom: 80px; }
+.gallery-head h2 {
+  font-size: clamp(42px, 5vw, 72px);
+  font-weight: 400;
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+}
+.g-item {
+  overflow: hidden;
+  position: relative;
+}
+.g-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%) contrast(1.05);
+  transition: transform 0.8s, filter 0.5s;
+}
+.g-item:hover img {
+  transform: scale(1.05);
+  filter: grayscale(70%);
+}
+.g-1 { grid-column: span 7; aspect-ratio: 7/5; }
+.g-2 { grid-column: span 5; aspect-ratio: 5/5; }
+.g-3 { grid-column: span 4; aspect-ratio: 4/5; }
+.g-4 { grid-column: span 4; aspect-ratio: 4/5; }
+.g-5 { grid-column: span 4; aspect-ratio: 4/5; }
+
+/* ============ TESTIMONIAL ============ */
+.testimonial-block {
+  padding: 140px 0;
+  text-align: center;
+  background: var(--bone);
+}
+.testimonial-block blockquote {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 400;
+  line-height: 1.3;
+  max-width: 900px;
+  margin: 32px auto;
+}
+.testimonial-block cite {
+  font-style: normal;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: var(--soft);
+  display: block;
+  margin-top: 32px;
+}
+.testimonial-block .stars {
+  letter-spacing: 0.4em;
+  font-size: 14px;
+}
+
+/* ============ CTA ============ */
+.cta {
+  padding: 140px 0;
+  text-align: center;
+}
+.cta h2 {
+  font-size: clamp(56px, 7vw, 112px);
+  font-weight: 400;
+  line-height: 1;
+  margin-bottom: 32px;
+}
+.cta h2 em { font-style: italic; }
+.cta p {
+  color: var(--soft);
+  max-width: 480px;
+  margin: 0 auto 48px;
+  font-weight: 300;
+}
+
+/* ============ FOOTER ============ */
+.footer {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 100px 0 32px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 64px;
+  margin-bottom: 80px;
+}
+.footer-brand .logo {
+  text-align: left;
+  color: var(--paper);
+  font-size: 36px;
+}
+.footer-brand .logo-tag { text-align: left; color: rgba(255,255,255,0.5); }
+.footer-brand p {
+  margin-top: 32px;
+  color: rgba(255,255,255,0.6);
+  font-size: 14px;
+  max-width: 280px;
+  font-weight: 300;
+  line-height: 1.7;
+}
+.footer-col h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  margin-bottom: 24px;
+  color: rgba(255,255,255,0.5);
+  font-weight: 500;
+}
+.footer-col a {
+  display: block;
+  padding: 6px 0;
+  color: var(--paper);
+  opacity: 0.8;
+  font-size: 14px;
+  transition: opacity 0.2s;
+}
+.footer-col a:hover { opacity: 1; }
+.footer-bottom {
+  padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  display: flex; justify-content: space-between;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.5);
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1024px) {
+  .reservation-panel {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .reservation-panel .btn { grid-column: span 2; }
+  .intro-grid, .suites .suite, .suites .suite:nth-child(even),
+  .exp-grid, .footer-grid, .exp-head {
+    grid-template-columns: 1fr !important;
+    gap: 40px;
+  }
+  .suite:nth-child(even) .suite-image { order: -1; }
+  .gallery-grid { grid-template-columns: repeat(6, 1fr); }
+  .g-1 { grid-column: span 6; }
+  .g-2 { grid-column: span 6; }
+  .g-3, .g-4, .g-5 { grid-column: span 2; }
+}
+
+@media (max-width: 768px) {
+  .nav { grid-template-columns: 1fr auto 1fr; }
+  .nav-left, .nav-right { display: none; }
+  .top-bar-left { display: none; }
+  .reservation-panel {
+    grid-template-columns: 1fr;
+    padding: 28px 24px;
+  }
+  .reservation-panel .btn { grid-column: span 1; }
+  .container { padding: 0 20px; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <div class="top-bar-left">
+      <a href="#">Costa Mareva, Portugal</a>
+      <a href="#">+351 282 740 100</a>
+    </div>
+    <div class="top-bar-right">
+      <a href="#">EN / PT / FR</a>
+      <a href="#">Guest login</a>
+    </div>
+  </div>
+</div>
+
+<header class="header">
+  <div class="container nav">
+    <ul class="nav-left">
+      <li><a href="#suites">Suites</a></li>
+      <li><a href="#experiences">Experiences</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+    </ul>
+    <a href="#" class="logo">
+      AURIGA
+      <span class="logo-tag">est. 1924 · coastal hotel</span>
+    </a>
+    <ul class="nav-right">
+      <li><a href="#">Dining</a></li>
+      <li><a href="#">Spa</a></li>
+      <li><a href="#">Reserve</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=1800&q=80" alt="Auriga coastal hotel">
+  </div>
+  <div class="container hero-content">
+    <div class="hero-eyebrow">A coastal sanctuary since 1924</div>
+    <h1>Quiet luxury,<br><em>by the Atlantic.</em></h1>
+    <p class="hero-sub">Thirty-two suites carved into a clifftop, where the only sounds are the surf and the rustle of linen. Reserve a stay that asks nothing of you.</p>
+  </div>
+</section>
+
+<form class="reservation-panel" onsubmit="event.preventDefault(); document.querySelector('.confirm-message').style.display = 'block';">
+  <div class="res-field">
+    <label class="res-label">Arrival</label>
+    <input type="text" class="res-input" value="14 June 2026" placeholder="Select date">
+  </div>
+  <div class="res-field">
+    <label class="res-label">Departure</label>
+    <input type="text" class="res-input" value="21 June 2026" placeholder="Select date">
+  </div>
+  <div class="res-field">
+    <label class="res-label">Guests</label>
+    <select class="res-input">
+      <option>2 adults</option>
+      <option>1 adult</option>
+      <option>2 adults, 1 child</option>
+      <option>2 adults, 2 children</option>
+      <option>3 adults</option>
+      <option>4 adults</option>
+    </select>
+  </div>
+  <div class="res-field">
+    <label class="res-label">Suite</label>
+    <select class="res-input">
+      <option>Any availability</option>
+      <option>Deluxe ocean</option>
+      <option>Junior suite</option>
+      <option>Cliffside suite</option>
+      <option>Auriga residence</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-solid">Check availability</button>
+</form>
+
+<div class="confirm-message" style="display:none; text-align:center; padding: 20px; background: var(--bone); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;">
+  Availability confirmed — our reservations team will be in touch shortly.
+</div>
+
+<section class="intro">
+  <div class="container intro-grid">
+    <div>
+      <div class="section-eyebrow">The Hotel</div>
+      <h2>One hundred years<br>of <em>stillness.</em></h2>
+    </div>
+    <div class="intro-body">
+      <p>Auriga has stood on this coast for a century — a former private estate of the Marquez family, reimagined in 1982 as a hotel of just thirty-two rooms.</p>
+      <p>The architecture remains: limestone walls, cedar shutters, and gardens designed to frame the sea rather than compete with it. The cooking is built around what the boats bring in each morning. The service, on the rare occasion you require it, is unhurried.</p>
+      <p>We are not a resort. We are a home that opens its doors a few months each year.</p>
+      <div class="intro-signature">
+        <span class="signature-mark">Isabel Marquez</span>
+        <span class="signature-details">Owner & Host · 3rd generation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="suites" class="suites">
+  <div class="container">
+    <div class="suites-head">
+      <div class="section-eyebrow" style="justify-content: center;">Accommodations</div>
+      <h2>Four suites,<br><em>each its own world.</em></h2>
+      <p>Every room faces the Atlantic. Every bed is dressed in Portuguese linen. Everything beyond that, we have considered for you.</p>
+    </div>
+
+    <div class="suites-list">
+      <article class="suite">
+        <div class="suite-image">
+          <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=900&q=80" alt="Deluxe Ocean">
+        </div>
+        <div class="suite-content">
+          <div class="suite-number">N.º 01 — Twelve available</div>
+          <h3>Deluxe Ocean</h3>
+          <p>42 square meters of quiet, with a private terrace, hand-finished oak floors, and a freestanding tub that looks past the cliffs.</p>
+          <div class="suite-specs">
+            <div class="suite-spec"><span class="spec-label">Size</span><span class="spec-value">42 m²</span></div>
+            <div class="suite-spec"><span class="spec-label">Bed</span><span class="spec-value">King</span></div>
+            <div class="suite-spec"><span class="spec-label">Guests</span><span class="spec-value">Two</span></div>
+            <div class="suite-spec"><span class="spec-label">View</span><span class="spec-value">Atlantic</span></div>
+          </div>
+          <div class="suite-footer">
+            <div class="suite-price">
+              <strong>€420</strong>
+              <span>per night, taxes incl.</span>
+            </div>
+            <a href="#" class="btn">Reserve</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="suite">
+        <div class="suite-image">
+          <img src="https://images.unsplash.com/photo-1631049307290-bb947b114627?w=900&q=80" alt="Junior Suite">
+        </div>
+        <div class="suite-content">
+          <div class="suite-number">N.º 02 — Eight available</div>
+          <h3>Junior Suite</h3>
+          <p>A separate sitting room overlooking the kitchen gardens, a marble bath drawn from local stone, and a small library curated each season.</p>
+          <div class="suite-specs">
+            <div class="suite-spec"><span class="spec-label">Size</span><span class="spec-value">68 m²</span></div>
+            <div class="suite-spec"><span class="spec-label">Bed</span><span class="spec-value">King</span></div>
+            <div class="suite-spec"><span class="spec-label">Guests</span><span class="spec-value">Two</span></div>
+            <div class="suite-spec"><span class="spec-label">View</span><span class="spec-value">Garden / sea</span></div>
+          </div>
+          <div class="suite-footer">
+            <div class="suite-price">
+              <strong>€680</strong>
+              <span>per night, taxes incl.</span>
+            </div>
+            <a href="#" class="btn">Reserve</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="suite">
+        <div class="suite-image">
+          <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=900&q=80" alt="Cliffside Suite">
+        </div>
+        <div class="suite-content">
+          <div class="suite-number">N.º 03 — Ten available</div>
+          <h3>Cliffside Suite</h3>
+          <p>Perched at the southern edge of the property, with floor-to-ceiling glass, a private plunge pool, and direct steps to the cove below.</p>
+          <div class="suite-specs">
+            <div class="suite-spec"><span class="spec-label">Size</span><span class="spec-value">92 m²</span></div>
+            <div class="suite-spec"><span class="spec-label">Bed</span><span class="spec-value">King + day</span></div>
+            <div class="suite-spec"><span class="spec-label">Guests</span><span class="spec-value">Three</span></div>
+            <div class="suite-spec"><span class="spec-label">View</span><span class="spec-value">Cove + cliffs</span></div>
+          </div>
+          <div class="suite-footer">
+            <div class="suite-price">
+              <strong>€1,180</strong>
+              <span>per night, taxes incl.</span>
+            </div>
+            <a href="#" class="btn">Reserve</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="suite">
+        <div class="suite-image">
+          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=900&q=80" alt="Auriga Residence">
+        </div>
+        <div class="suite-content">
+          <div class="suite-number">N.º 04 — Two available</div>
+          <h3>Auriga Residence</h3>
+          <p>The original family quarters: two bedrooms, a private chef on request, a walled rose garden, and uninterrupted views of the entire bay.</p>
+          <div class="suite-specs">
+            <div class="suite-spec"><span class="spec-label">Size</span><span class="spec-value">180 m²</span></div>
+            <div class="suite-spec"><span class="spec-label">Bed</span><span class="spec-value">Two king</span></div>
+            <div class="suite-spec"><span class="spec-label">Guests</span><span class="spec-value">Four</span></div>
+            <div class="suite-spec"><span class="spec-label">View</span><span class="spec-value">Full bay</span></div>
+          </div>
+          <div class="suite-footer">
+            <div class="suite-price">
+              <strong>€2,400</strong>
+              <span>per night, taxes incl.</span>
+            </div>
+            <a href="#" class="btn">Inquire</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="experiences" class="experiences">
+  <div class="container">
+    <div class="exp-head">
+      <div>
+        <div class="section-eyebrow">Experiences</div>
+        <h2>A slower<br><em>kind of day.</em></h2>
+      </div>
+      <p>What you do at Auriga is, mostly, what you wish. Below are a few quiet rituals our guests tend to find their way into.</p>
+    </div>
+    <div class="exp-grid">
+      <a href="#" class="exp-card">
+        <div class="exp-image"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=700&q=80" alt="Spa"></div>
+        <div class="exp-number">N.º 01</div>
+        <h3>The Bath House</h3>
+        <p>Atlantic salt rituals, deep-tissue work by Lurdes, and silence as a matter of policy.</p>
+      </a>
+      <a href="#" class="exp-card">
+        <div class="exp-image"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=80" alt="Dining"></div>
+        <div class="exp-number">N.º 02</div>
+        <h3>Mareva Kitchen</h3>
+        <p>A six-course tasting menu drawn from the morning's catch and the gardens at the back.</p>
+      </a>
+      <a href="#" class="exp-card">
+        <div class="exp-image"><img src="https://images.unsplash.com/photo-1502209524164-acea936639a2?w=700&q=80" alt="Sailing"></div>
+        <div class="exp-number">N.º 03</div>
+        <h3>Private Sail</h3>
+        <p>The Auriga, a 1962 wooden ketch, leaves the harbour at dawn for guests who request her.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="gallery" class="gallery">
+  <div class="container">
+    <div class="gallery-head">
+      <div class="section-eyebrow" style="justify-content: center;">Portraits of the House</div>
+      <h2>Light, stone, water.</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="g-item g-1"><img src="https://images.unsplash.com/photo-1455587734955-081b22074882?w=1200&q=80" alt=""></div>
+      <div class="g-item g-2"><img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=900&q=80" alt=""></div>
+      <div class="g-item g-3"><img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=700&q=80" alt=""></div>
+      <div class="g-item g-4"><img src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=700&q=80" alt=""></div>
+      <div class="g-item g-5"><img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=700&q=80" alt=""></div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonial-block">
+  <div class="container-narrow">
+    <div class="section-eyebrow" style="justify-content: center;">In their words</div>
+    <div class="stars">★★★★★</div>
+    <blockquote>"We arrived planning to read on the terrace. By Thursday I had stopped checking the time. Auriga is the rare hotel that gives you nothing — and somehow, everything."</blockquote>
+    <cite>— Caroline V. · Condé Nast Traveler · 2025</cite>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container-narrow">
+    <div class="section-eyebrow" style="justify-content: center;">Reserve</div>
+    <h2>An <em>unhurried</em><br>stay awaits.</h2>
+    <p>Our season runs from April through October. Reservations may be made by direct line or by the form above.</p>
+    <a href="#" class="btn btn-solid">Begin a reservation</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          AURIGA
+          <span class="logo-tag">est. 1924 · coastal hotel</span>
+        </a>
+        <p>Estrada da Marquez 12, Costa Mareva, Portugal. Open April through October by reservation.</p>
+      </div>
+      <div class="footer-col">
+        <h4>The House</h4>
+        <a href="#">Suites</a>
+        <a href="#">Experiences</a>
+        <a href="#">Mareva Kitchen</a>
+        <a href="#">The Bath House</a>
+      </div>
+      <div class="footer-col">
+        <h4>Stay</h4>
+        <a href="#">Reserve</a>
+        <a href="#">Private events</a>
+        <a href="#">Press kit</a>
+        <a href="#">Concierge</a>
+      </div>
+      <div class="footer-col">
+        <h4>Visit</h4>
+        <a href="#">+351 282 740 100</a>
+        <a href="#">reserve@auriga.pt</a>
+        <a href="#">Instagram</a>
+        <a href="#">Journal</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Hotel Auriga, Lda.</span>
+      <span>Privacy · Terms · Cookies</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const header = document.querySelector('.header');
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const current = window.scrollY;
+  if (current > 80 && current > lastScroll) {
+    header.style.transform = 'translateY(-100%)';
+  } else {
+    header.style.transform = 'translateY(0)';
+  }
+  header.style.transition = 'transform 0.4s ease';
+  lastScroll = current;
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,4 @@
+pywebview>=5.0
+pythonnet>=3.0        # pywebview's WebView2 backend on Windows
+websockets>=12
+psutil>=5.9

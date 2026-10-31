@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voyago — Travel beyond the ordinary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal: #0F4C4C;
+  --teal-dark: #073838;
+  --orange: #FF6B35;
+  --orange-soft: #FFE5DA;
+  --cream: #FAF7F2;
+  --paper: #FFFFFF;
+  --ink: #0E0E0E;
+  --muted: #6B6B66;
+  --border: #E8E4DC;
+  --radius: 14px;
+  --shadow-soft: 0 12px 40px rgba(15,76,76,0.08);
+  --shadow-card: 0 4px 20px rgba(15,76,76,0.06);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Fraunces', serif;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+
+.container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+/* ============ HEADER ============ */
+.header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(250, 247, 242, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 0;
+}
+.logo {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 28px;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  text-decoration: none;
+  display: flex; align-items: baseline; gap: 4px;
+}
+.logo-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--orange);
+  display: inline-block;
+}
+.nav-links {
+  display: flex; gap: 36px; list-style: none;
+}
+.nav-links a {
+  color: var(--ink); text-decoration: none;
+  font-size: 15px; font-weight: 500;
+  transition: opacity 0.2s;
+}
+.nav-links a:hover { opacity: 0.6; }
+.nav-actions { display: flex; gap: 12px; align-items: center; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border: none; cursor: pointer;
+  font-family: inherit; font-size: 15px; font-weight: 500;
+  border-radius: 999px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn-primary { background: var(--ink); color: var(--cream); }
+.btn-primary:hover { background: var(--teal); transform: translateY(-1px); }
+.btn-ghost { background: transparent; color: var(--ink); }
+.btn-ghost:hover { background: rgba(0,0,0,0.05); }
+.btn-orange { background: var(--orange); color: white; }
+.btn-orange:hover { background: #e85a26; transform: translateY(-1px); }
+
+/* ============ HERO ============ */
+.hero { padding: 60px 0 40px; }
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 14px;
+  background: var(--orange-soft);
+  color: var(--orange);
+  border-radius: 999px;
+  font-size: 13px; font-weight: 600;
+  margin-bottom: 28px;
+}
+.hero h1 {
+  font-size: clamp(44px, 6vw, 80px);
+  margin-bottom: 24px;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--teal);
+}
+.hero-sub {
+  font-size: 18px;
+  color: var(--muted);
+  max-width: 480px;
+  margin-bottom: 36px;
+}
+.hero-actions { display: flex; gap: 12px; margin-bottom: 56px; }
+.hero-stats {
+  display: flex; gap: 48px;
+  padding-top: 32px; border-top: 1px solid var(--border);
+}
+.stat-num {
+  font-family: 'Fraunces', serif;
+  font-size: 36px; font-weight: 600;
+  display: block;
+  letter-spacing: -0.02em;
+}
+.stat-label {
+  font-size: 12px; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.12em;
+  font-weight: 500;
+}
+
+.hero-visual {
+  position: relative;
+  aspect-ratio: 4/5;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+}
+.hero-visual img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.hero-badge {
+  position: absolute;
+  bottom: 24px; left: 24px;
+  background: var(--paper);
+  padding: 14px 18px;
+  border-radius: 14px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.16);
+  display: flex; gap: 12px; align-items: center;
+}
+.badge-pulse {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: #22c55e;
+  position: relative;
+}
+.badge-pulse::after {
+  content: '';
+  position: absolute; inset: -4px;
+  border-radius: 50%;
+  background: #22c55e;
+  opacity: 0.3;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.5); opacity: 0; }
+}
+.hero-badge strong { display: block; font-size: 13px; }
+.hero-badge p { font-size: 12px; color: var(--muted); }
+
+/* ============ SEARCH BAR ============ */
+.search-bar {
+  background: var(--paper);
+  border-radius: 24px;
+  padding: 8px;
+  box-shadow: var(--shadow-soft);
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr auto;
+  gap: 0;
+  margin: 48px auto 0;
+  max-width: 960px;
+  border: 1px solid var(--border);
+}
+.search-field {
+  padding: 14px 22px;
+  border-right: 1px solid var(--border);
+  transition: background 0.2s;
+  cursor: text;
+}
+.search-field:hover { background: var(--cream); }
+.search-field:last-of-type { border-right: none; }
+.search-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  font-weight: 600;
+  margin-bottom: 4px;
+  display: block;
+}
+.search-field input {
+  border: none; background: transparent;
+  width: 100%; font-family: inherit;
+  font-size: 15px; font-weight: 500;
+  outline: none; color: var(--ink);
+}
+.search-field input::placeholder { color: #B5B0A6; }
+.search-btn {
+  background: var(--orange);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  padding: 16px 28px;
+  font-family: inherit;
+  font-size: 15px; font-weight: 600;
+  cursor: pointer;
+  margin: 4px;
+  display: flex; align-items: center; gap: 8px;
+  transition: background 0.2s;
+}
+.search-btn:hover { background: #e85a26; }
+
+/* ============ SECTIONS ============ */
+section { padding: 100px 0; }
+
+.section-head {
+  display: flex; justify-content: space-between; align-items: end;
+  margin-bottom: 48px;
+  gap: 32px;
+}
+.section-title h2 {
+  font-size: clamp(36px, 4vw, 52px);
+  margin-bottom: 14px;
+}
+.section-title p {
+  color: var(--muted);
+  max-width: 520px;
+}
+.section-link {
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 500;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--ink);
+  transition: gap 0.2s;
+}
+.section-link:hover { gap: 12px; }
+
+/* ============ DESTINATIONS (BENTO) ============ */
+.destinations-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 280px 280px;
+  gap: 16px;
+}
+.destination-card {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.4s;
+  text-decoration: none;
+  color: white;
+}
+.destination-card:hover { transform: translateY(-6px); }
+.destination-card:first-child { grid-row: span 2; }
+.destination-card img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s;
+}
+.destination-card:hover img { transform: scale(1.06); }
+.destination-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.75), transparent 55%);
+}
+.destination-info {
+  position: absolute;
+  bottom: 22px; left: 22px;
+  right: 22px;
+}
+.destination-info h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 26px;
+  margin-bottom: 4px;
+  color: white;
+}
+.destination-info span {
+  font-size: 13px;
+  opacity: 0.85;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.destination-card:first-child .destination-info h3 { font-size: 36px; }
+
+/* ============ TRIPS CAROUSEL ============ */
+.trips-section { background: var(--paper); }
+.trips-carousel {
+  position: relative;
+  padding: 0 72px;
+}
+.trips-track {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 8px 4px 20px;
+  margin: 0 -4px;
+}
+.trips-track::-webkit-scrollbar { display: none; }
+.trip-card {
+  flex: 0 0 calc((100% - 48px) / 3);
+  min-width: 0;
+  scroll-snap-align: start;
+  background: var(--cream);
+  border-radius: 18px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: 1px solid transparent;
+}
+.trip-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-soft);
+}
+.carousel-arrow {
+  position: absolute;
+  top: 28%;
+  transform: translateY(-50%);
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.1);
+  transition: all 0.2s;
+  color: var(--ink);
+}
+.carousel-arrow:hover {
+  background: var(--ink);
+  color: var(--paper);
+  transform: translateY(-50%) scale(1.06);
+}
+.carousel-arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.carousel-arrow.prev { left: 8px; }
+.carousel-arrow.next { right: 8px; }
+.trip-image {
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  position: relative;
+}
+.trip-image img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+.trip-card:hover .trip-image img { transform: scale(1.05); }
+.trip-tag {
+  position: absolute;
+  top: 16px; left: 16px;
+  background: var(--paper);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.trip-fav {
+  position: absolute;
+  top: 14px; right: 14px;
+  width: 36px; height: 36px;
+  background: var(--paper);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.trip-fav:hover { transform: scale(1.1); }
+.trip-info { padding: 24px; }
+.trip-meta {
+  display: flex; gap: 16px;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.trip-meta span { display: inline-flex; align-items: center; gap: 5px; }
+.trip-info h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+.trip-desc {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 22px;
+  line-height: 1.5;
+}
+.trip-footer {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 18px; border-top: 1px solid var(--border);
+}
+.trip-price strong {
+  font-family: 'Fraunces', serif;
+  font-size: 26px;
+  font-weight: 600;
+}
+.trip-price span {
+  font-size: 13px; color: var(--muted);
+  display: block;
+}
+.trip-rating {
+  display: inline-flex; gap: 4px; align-items: center;
+  font-size: 14px; font-weight: 500;
+}
+
+/* ============ WHY ============ */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.why-card {
+  padding: 32px;
+  border-radius: 18px;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  transition: transform 0.3s;
+}
+.why-card:hover { transform: translateY(-4px); }
+.why-icon {
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  background: var(--orange-soft);
+  color: var(--orange);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 22px;
+}
+.why-card h3 {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+.why-card p {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+/* ============ TESTIMONIALS ============ */
+.testimonials-section { background: var(--teal); color: var(--cream); }
+.testimonials-section h2 { color: var(--cream); }
+.testimonials-section .section-title p { color: rgba(250, 247, 242, 0.7); }
+.testimonials-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+}
+.testimonial {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 32px;
+  border-radius: 18px;
+}
+.testimonial-stars { color: var(--orange); margin-bottom: 16px; }
+.testimonial-quote {
+  font-family: 'Fraunces', serif;
+  font-size: 19px;
+  line-height: 1.5;
+  margin-bottom: 28px;
+  color: var(--cream);
+}
+.testimonial-author {
+  display: flex; gap: 14px; align-items: center;
+}
+.author-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.author-info strong { display: block; font-weight: 600; font-size: 15px; }
+.author-info span { font-size: 13px; opacity: 0.7; }
+
+/* ============ CTA ============ */
+.cta-section { padding: 60px 0 120px; }
+.cta-card {
+  background: var(--ink);
+  color: var(--cream);
+  border-radius: 28px;
+  padding: 80px 60px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 40px;
+  position: relative;
+  overflow: hidden;
+}
+.cta-card h2 {
+  font-size: clamp(32px, 4vw, 48px);
+  color: var(--cream);
+  position: relative; z-index: 2;
+}
+.cta-card p {
+  color: rgba(250,247,242,0.7);
+  margin-top: 14px;
+  position: relative; z-index: 2;
+  max-width: 520px;
+}
+.cta-actions { position: relative; z-index: 2; display: flex; gap: 12px; }
+.cta-decoration {
+  position: absolute;
+  right: -120px; top: -120px;
+  width: 480px; height: 480px;
+  border-radius: 50%;
+  background: var(--orange);
+  opacity: 0.12;
+  filter: blur(20px);
+}
+
+/* ============ FOOTER ============ */
+.footer { background: var(--ink); color: var(--cream); padding: 80px 0 40px; }
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 56px;
+}
+.footer-brand .logo { color: var(--cream); }
+.footer-brand p {
+  color: rgba(250,247,242,0.6);
+  margin-top: 16px;
+  font-size: 15px;
+  max-width: 320px;
+}
+.footer-col h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 20px;
+  opacity: 0.6;
+  font-weight: 600;
+}
+.footer-col a {
+  display: block;
+  color: var(--cream);
+  text-decoration: none;
+  padding: 6px 0;
+  opacity: 0.85;
+  font-size: 15px;
+  transition: opacity 0.2s;
+}
+.footer-col a:hover { opacity: 1; }
+.footer-bottom {
+  padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  display: flex; justify-content: space-between;
+  font-size: 13px; opacity: 0.6;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1100px) {
+  .trip-card { flex: 0 0 calc((100% - 24px) / 2); }
+  .trips-carousel { padding: 0 64px; }
+}
+
+@media (max-width: 968px) {
+  .hero-grid, .destinations-grid, .why-grid,
+  .testimonials-grid, .footer-grid {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto !important;
+  }
+  .destinations-grid { grid-template-rows: 280px 280px 280px 280px 280px !important; }
+  .destination-card:first-child { grid-row: auto !important; }
+  .search-bar { grid-template-columns: 1fr; }
+  .search-field { border-right: none; border-bottom: 1px solid var(--border); }
+  .search-field:last-of-type { border-bottom: none; }
+  .nav-links { display: none; }
+  .cta-card { grid-template-columns: 1fr; padding: 48px 32px; }
+  .hero-stats { gap: 24px; }
+  section { padding: 64px 0; }
+  .footer-bottom { flex-direction: column; gap: 12px; }
+  .trips-carousel { padding: 0 52px; }
+  .trip-card { flex: 0 0 100%; }
+  .carousel-arrow { width: 44px; height: 44px; }
+  .carousel-arrow.prev { left: 4px; }
+  .carousel-arrow.next { right: 4px; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container nav">
+    <a href="#" class="logo">voyago<span class="logo-dot"></span></a>
+    <ul class="nav-links">
+      <li><a href="#destinations">Destinations</a></li>
+      <li><a href="#trips">Trips</a></li>
+      <li><a href="#why">About</a></li>
+      <li><a href="#testimonials">Stories</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="#" class="btn btn-ghost">Sign in</a>
+      <a href="#trips" class="btn btn-primary">Book a trip</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <span class="hero-eyebrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.5 7h7l-5.5 4 2 7-6-4-6 4 2-7-5.5-4h7z"/></svg>
+            4.9 from 12,000+ travelers
+          </span>
+          <h1>Travel beyond <em>the ordinary</em></h1>
+          <p class="hero-sub">From hidden mountain trails to coastal escapes — discover curated trips designed by local experts who know every secret of the place they call home.</p>
+          <div class="hero-actions">
+            <a href="#trips" class="btn btn-orange">Explore trips
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a href="#" class="btn btn-ghost">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><polygon points="10,8 16,12 10,16"/></svg>
+              Watch the film
+            </a>
+          </div>
+          <div class="hero-stats">
+            <div><span class="stat-num">120+</span><span class="stat-label">Destinations</span></div>
+            <div><span class="stat-num">98%</span><span class="stat-label">Repeat clients</span></div>
+            <div><span class="stat-num">24/7</span><span class="stat-label">Support</span></div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=900&q=80" alt="Traveler exploring the world">
+          <div class="hero-badge">
+            <div class="badge-pulse"></div>
+            <div>
+              <strong>43 trips departing</strong>
+              <p>this week, book before sold out</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form class="search-bar" onsubmit="event.preventDefault(); alert('Searching trips...');">
+        <div class="search-field">
+          <label class="search-label">Destination</label>
+          <input type="text" placeholder="Where to next?" value="Bali, Indonesia">
+        </div>
+        <div class="search-field">
+          <label class="search-label">Check-in</label>
+          <input type="text" placeholder="Add dates" value="Jun 14 — Jun 24">
+        </div>
+        <div class="search-field">
+          <label class="search-label">Travelers</label>
+          <input type="text" placeholder="Add guests" value="2 adults">
+        </div>
+        <button type="submit" class="search-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+          Search
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <section id="destinations">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-title">
+          <h2>Popular destinations</h2>
+          <p>Six places our travelers loved most this season — each with story-worthy itineraries waiting.</p>
+        </div>
+        <a href="#" class="section-link">View all destinations
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <div class="destinations-grid">
+        <a href="#" class="destination-card">
+          <img src="https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?w=900&q=80" alt="Bali">
+          <div class="destination-overlay"></div>
+          <div class="destination-info">
+            <h3>Bali, Indonesia</h3>
+            <span>📍 24 trips · from $890</span>
+          </div>
+        </a>
+        <a href="#" class="destination-card">
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=600&q=80" alt="Iceland">
+          <div class="destination-overlay"></div>
+          <div class="destination-info">
+            <h3>Iceland</h3>
+            <span>📍 12 trips · from $1,490</span>
+          </div>
+        </a>
+        <a href="#" class="destination-card">
+          <img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=600&q=80" alt="Kyoto">
+          <div class="destination-overlay"></div>
+          <div class="destination-info">
+            <h3>Kyoto, Japan</h3>
+            <span>📍 18 trips · from $1,290</span>
+          </div>
+        </a>
+        <a href="#" class="destination-card">
+          <img src="https://images.unsplash.com/photo-1526392060635-9d6019884377?w=600&q=80" alt="Peru">
+          <div class="destination-overlay"></div>
+          <div class="destination-info">
+            <h3>Peru</h3>
+            <span>📍 9 trips · from $1,790</span>
+          </div>
+        </a>
+        <a href="#" class="destination-card">
+          <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=600&q=80" alt="Santorini">
+          <div class="destination-overlay"></div>
+          <div class="destination-info">
+            <h3>Santorini</h3>
+            <span>📍 15 trips · from $1,190</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="trips" class="trips-section">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-title">
+          <h2>Our trips &amp; adventures</h2>
+          <p>Hand-picked Red Sea and desert experiences — every detail planned, hotel pickup included, your guide with you all day.</p>
+        </div>
+      </div>
+
+      <div class="trips-carousel">
+        <button class="carousel-arrow prev" aria-label="Previous trips">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        </button>
+
+        <div class="trips-track" id="tripsTrack">
+
+          <article class="trip-card">
+            <div class="trip-image">
+              <span class="trip-tag">Bestseller</span>
+              <span class="trip-fav">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </span>
+              <img src="https://images.unsplash.com/photo-1530053969600-caed2596d242?w=700&q=80" alt="Scuba diving Red Sea">
+            </div>
+            <div class="trip-info">
+              <div class="trip-meta">
+                <span>🌊 Red Sea</span>
+                <span>⏱ 8 — 16:00</span>
+                <span>🤿 2 dives</span>
+              </div>
+              <h3>Two-Dive Sea Adventure</h3>
+              <p class="trip-desc">Set out at 8am for two dives at different reef sites. Lunch &amp; drinks on the boat, snorkeling between dives, all gear included — tank, BCD, regulator.</p>
+              <div class="trip-footer">
+                <div class="trip-price">
+                  <span>from</span>
+                  <strong>$55</strong>
+                </div>
+                <div class="trip-rating">⭐ 4.9 <span style="color:var(--muted)">(264)</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="trip-card">
+            <div class="trip-image">
+              <span class="trip-tag" style="background:var(--orange); color:white;">Top experience</span>
+              <span class="trip-fav">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </span>
+              <img src="https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?w=700&q=80" alt="Sahara Park safari">
+            </div>
+            <div class="trip-info">
+              <div class="trip-meta">
+                <span>🏜️ Desert</span>
+                <span>⏱ 11 — 18:00</span>
+                <span>🚙 All-included</span>
+              </div>
+              <h3>Sahara Park Grand Safari</h3>
+              <p class="trip-desc">Hotel pickup at 11am. Bedouin village, camel ride, 40-min quad, spider car, terrarium, traditional show, dinner &amp; drinks under the sunset.</p>
+              <div class="trip-footer">
+                <div class="trip-price">
+                  <span>from</span>
+                  <strong>$48</strong>
+                </div>
+                <div class="trip-rating">⭐ 4.9 <span style="color:var(--muted)">(412)</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="trip-card">
+            <div class="trip-image">
+              <span class="trip-tag">Half-day</span>
+              <span class="trip-fav">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </span>
+              <img src="https://images.unsplash.com/photo-1604999333679-b86d54738315?w=700&q=80" alt="Morning quad safari">
+            </div>
+            <div class="trip-info">
+              <div class="trip-meta">
+                <span>🏜️ Desert</span>
+                <span>⏱ 9 — 12:00</span>
+                <span>🛵 Quad</span>
+              </div>
+              <h3>Morning Quad Safari</h3>
+              <p class="trip-desc">9am hotel pickup. Drive your own quad 45 minutes into the desert, camel ride and tea stop, then 45 minutes back. A short, sharp adventure.</p>
+              <div class="trip-footer">
+                <div class="trip-price">
+                  <span>from</span>
+                  <strong>$25</strong>
+                </div>
+                <div class="trip-rating">⭐ 4.8 <span style="color:var(--muted)">(186)</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="trip-card">
+            <div class="trip-image">
+              <span class="trip-tag">Half-day</span>
+              <span class="trip-fav">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </span>
+              <img src="https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?w=700&q=80" alt="Afternoon quad safari">
+            </div>
+            <div class="trip-info">
+              <div class="trip-meta">
+                <span>🏜️ Desert</span>
+                <span>⏱ 14 — 17:00</span>
+                <span>🛵 Quad</span>
+              </div>
+              <h3>Afternoon Quad Safari</h3>
+              <p class="trip-desc">2pm pickup from your hotel. 45 minutes by quad into the desert, camel ride and tea, then 45 minutes back. Same route, kinder afternoon light.</p>
+              <div class="trip-footer">
+                <div class="trip-price">
+                  <span>from</span>
+                  <strong>$25</strong>
+                </div>
+                <div class="trip-rating">⭐ 4.8 <span style="color:var(--muted)">(142)</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="trip-card">
+            <div class="trip-image">
+              <span class="trip-tag" style="background:var(--orange); color:white;">Most popular</span>
+              <span class="trip-fav">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </span>
+              <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=700&q=80" alt="Sunset quad Bedouin night">
+            </div>
+            <div class="trip-info">
+              <div class="trip-meta">
+                <span>🌅 Sunset</span>
+                <span>⏱ 13:30 — 19:00</span>
+                <span>🎉 Dinner + show</span>
+              </div>
+              <h3>Sunset Quad &amp; Bedouin Night</h3>
+              <p class="trip-desc">Depart at 1:30pm. Quad ride into the dunes, visit a Bedouin village, traditional show, party, dinner and drinks — all included.</p>
+              <div class="trip-footer">
+                <div class="trip-price">
+                  <span>from</span>
+                  <strong>$45</strong>
+                </div>
+                <div class="trip-rating">⭐ 5.0 <span style="color:var(--muted)">(328)</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="trip-card">
+            <div class="trip-image">
+              <span class="trip-tag">Relax</span>
+              <span class="trip-fav">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </span>
+              <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=700&q=80" alt="Spa massage">
+            </div>
+            <div class="trip-info">
+              <div class="trip-meta">
+                <span>💆 Wellness</span>
+                <span>⏱ 2 hours</span>
+                <span>✨ Full ritual</span>
+              </div>
+              <h3>Two-Hour Spa Ritual</h3>
+              <p class="trip-desc">A full two hours of unwinding — 45-minute massage, body scrub, mask, dry sauna and foam sauna. Everything in one package.</p>
+              <div class="trip-footer">
+                <div class="trip-price">
+                  <span>from</span>
+                  <strong>$35</strong>
+                </div>
+                <div class="trip-rating">⭐ 4.9 <span style="color:var(--muted)">(98)</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="trip-card">
+            <div class="trip-image">
+              <span class="trip-tag">Best snorkeling</span>
+              <span class="trip-fav">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </span>
+              <img src="https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=700&q=80" alt="Sharm El Naga snorkeling">
+            </div>
+            <div class="trip-info">
+              <div class="trip-meta">
+                <span>🪸 Sea</span>
+                <span>⏱ Full day</span>
+                <span>🐠 Beach + reef</span>
+              </div>
+              <h3>Sharm El Naga Snorkel Day</h3>
+              <p class="trip-desc">50km south of Hurghada — the best corals and fish on the coast. Quiet beach with umbrellas, lunch at the area's best restaurant.</p>
+              <div class="trip-footer">
+                <div class="trip-price">
+                  <span>from</span>
+                  <strong>$40</strong>
+                </div>
+                <div class="trip-rating">⭐ 4.9 <span style="color:var(--muted)">(218)</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="trip-card">
+            <div class="trip-image">
+              <span class="trip-tag">Weather permitting</span>
+              <span class="trip-fav">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </span>
+              <img src="https://images.unsplash.com/photo-1530541930197-ff16ac917b0e?w=700&q=80" alt="Parasailing Red Sea">
+            </div>
+            <div class="trip-info">
+              <div class="trip-meta">
+                <span>🪂 Sky</span>
+                <span>⏱ 1 hour</span>
+                <span>🌊 High flight</span>
+              </div>
+              <h3>Parasailing Over the Red Sea</h3>
+              <p class="trip-desc">Driver picks you up from your hotel. Soar above the Red Sea — runs on calm days only, but the view is worth the wait.</p>
+              <div class="trip-footer">
+                <div class="trip-price">
+                  <span>from</span>
+                  <strong>$40</strong>
+                </div>
+                <div class="trip-rating">⭐ 4.8 <span style="color:var(--muted)">(74)</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="trip-card">
+            <div class="trip-image">
+              <span class="trip-tag">Limited</span>
+              <span class="trip-fav">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </span>
+              <img src="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=700&q=80" alt="Horse riding sea desert">
+            </div>
+            <div class="trip-info">
+              <div class="trip-meta">
+                <span>🐴 Mixed</span>
+                <span>⏱ 2 hours</span>
+                <span>🌅 Sea + dunes</span>
+              </div>
+              <h3>Horse Riding by Sea &amp; Desert</h3>
+              <p class="trip-desc">Two hours of riding — half along the shoreline, half through the desert. Hotel transfer both ways included.</p>
+              <div class="trip-footer">
+                <div class="trip-price">
+                  <span>from</span>
+                  <strong>$35</strong>
+                </div>
+                <div class="trip-rating">⭐ 4.9 <span style="color:var(--muted)">(102)</span></div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <button class="carousel-arrow next" aria-label="Next trips">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="why">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-title">
+          <h2>Why travel with Voyago</h2>
+          <p>We're not a booking engine — we're a team that has actually walked every trail we sell.</p>
+        </div>
+      </div>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-7 8-13a8 8 0 1 0-16 0c0 6 8 13 8 13z"/><circle cx="12" cy="9" r="3"/></svg>
+          </div>
+          <h3>Local expert guides</h3>
+          <p>Every trip is led by someone born and raised where you're going. They know which restaurants are actually good.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <h3>Flexible cancellation</h3>
+          <p>Full refund up to 30 days before departure. Life happens — your itinerary should be able to keep up.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </div>
+          <h3>24/7 travel concierge</h3>
+          <p>Missed your flight at 3am in Lima? Message us. A real person picks up — every single time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials" class="testimonials-section">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-title">
+          <h2>Stories from the road</h2>
+          <p>What our travelers told us when they got home.</p>
+        </div>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-quote">"Voyago found me a homestay outside Cusco that I'd never have booked on my own. Most memorable week of my life — I'm still emailing the family."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80" alt=""></div>
+            <div class="author-info">
+              <strong>Sofia Marín</strong>
+              <span>Peru · 12 days</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-quote">"I'd never booked a group trip and was nervous. The guide read the group perfectly — fast paths for the hikers, slow tea breaks for the rest of us."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&q=80" alt=""></div>
+            <div class="author-info">
+              <strong>James Okafor</strong>
+              <span>Morocco · 8 days</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-quote">"The Iceland trip ran during a blizzard. Voyago rerouted the entire week in an hour. I still saw the aurora. Don't book anywhere else."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&q=80" alt=""></div>
+            <div class="author-info">
+              <strong>Aiko Tanaka</strong>
+              <span>Iceland · 6 days</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <div class="cta-decoration"></div>
+        <div>
+          <h2>Ready for your<br>next chapter?</h2>
+          <p>Tell us where you've been dreaming about — we'll send back three trip ideas within 24 hours, no commitment.</p>
+        </div>
+        <div class="cta-actions">
+          <a href="#" class="btn btn-orange">Plan my trip
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo">voyago<span class="logo-dot"></span></a>
+        <p>Small-group travel for people who want more than a guidebook itinerary.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Trips</h4>
+        <a href="#">By destination</a>
+        <a href="#">By style</a>
+        <a href="#">Group tours</a>
+        <a href="#">Private trips</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About us</a>
+        <a href="#">Our guides</a>
+        <a href="#">Press</a>
+        <a href="#">Careers</a>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="#">Help center</a>
+        <a href="#">Booking policy</a>
+        <a href="#">Insurance</a>
+        <a href="#">Contact us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Voyago Travel Co. All rights reserved.</span>
+      <span>Privacy · Terms · Cookies</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Sticky header shadow on scroll
+const header = document.querySelector('.header');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 20) {
+    header.style.boxShadow = '0 4px 20px rgba(15,76,76,0.06)';
+  } else {
+    header.style.boxShadow = 'none';
+  }
+});
+
+// Favorite toggle
+document.querySelectorAll('.trip-fav').forEach(fav => {
+  fav.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const svg = fav.querySelector('svg');
+    if (svg.getAttribute('fill') === 'currentColor') {
+      svg.setAttribute('fill', 'none');
+      svg.style.color = '';
+    } else {
+      svg.setAttribute('fill', 'currentColor');
+      svg.style.color = '#FF6B35';
+    }
+  });
+});
+
+// Trips carousel — swipe arrows
+const track = document.getElementById('tripsTrack');
+const prevBtn = document.querySelector('.carousel-arrow.prev');
+const nextBtn = document.querySelector('.carousel-arrow.next');
+
+function getScrollAmount() {
+  const card = track.querySelector('.trip-card');
+  if (!card) return 320;
+  const style = window.getComputedStyle(track);
+  const gap = parseInt(style.gap) || 24;
+  return card.offsetWidth + gap;
+}
+
+function updateArrows() {
+  const max = track.scrollWidth - track.clientWidth;
+  prevBtn.disabled = track.scrollLeft <= 4;
+  nextBtn.disabled = track.scrollLeft >= max - 4;
+}
+
+nextBtn.addEventListener('click', () => {
+  track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+});
+
+prevBtn.addEventListener('click', () => {
+  track.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+});
+
+track.addEventListener('scroll', updateArrows, { passive: true });
+window.addEventListener('resize', updateArrows);
+updateArrows();
+
+// Keyboard arrows when carousel is hovered
+let carouselFocused = false;
+document.querySelector('.trips-carousel').addEventListener('mouseenter', () => carouselFocused = true);
+document.querySelector('.trips-carousel').addEventListener('mouseleave', () => carouselFocused = false);
+document.addEventListener('keydown', (e) => {
+  if (!carouselFocused) return;
+  if (e.key === 'ArrowRight') nextBtn.click();
+  if (e.key === 'ArrowLeft') prevBtn.click();
+});
+</script>
+
+</body>
+</html>

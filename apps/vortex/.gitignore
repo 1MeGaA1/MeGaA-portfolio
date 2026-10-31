@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+server/data/
+client/client.log*
+client/client.json
+build/
+dist/
+*.spec
+client/webview2-profile/

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VORTEX · ADMIN</title>
+  <link rel="stylesheet" href="fonts/fonts.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<!-- ============ LOGIN SCREEN ============ -->
+<div id="admin-login" class="screen active">
+  <div class="rings">
+    <div class="ring r1"></div>
+    <div class="ring r2"></div>
+    <div class="ring r3"></div>
+  </div>
+  <div class="particles">
+    <div class="particle" style="top: 12%; left: 10%;"></div>
+    <div class="particle magenta small" style="top: 22%; right: 14%;"></div>
+    <div class="particle small" style="top: 40%; left: 8%;"></div>
+    <div class="particle magenta" style="bottom: 28%; right: 12%;"></div>
+    <div class="particle small" style="bottom: 18%; left: 22%;"></div>
+    <div class="particle magenta small" style="top: 35%; right: 6%;"></div>
+  </div>
+
+  <div class="warning-banner">RESTRICTED ACCESS · STAFF ONLY</div>
+
+  <form class="auth-card" id="login-form" autocomplete="on">
+    <div class="auth-logo">
+      <div class="logo-mark">
+        <video src="logo.mp4" autoplay loop muted playsinline preload="auto"></video>
+      </div>
+      <div>
+        <div class="logo-wordmark-text">VORTEX</div>
+        <div class="logo-sub">// ADMIN</div>
+      </div>
+    </div>
+
+    <div class="auth-label">// ACCESS TERMINAL</div>
+    <div class="auth-title">STAFF AUTHENTICATION</div>
+    <div class="auth-desc" id="login-desc">Enter your staff credentials to open the Vortex control console.</div>
+
+    <div class="error-msg" id="error-msg">AUTH FAILED · CHECK CREDENTIALS</div>
+
+    <div class="form-group">
+      <label class="form-label">Staff ID</label>
+      <input type="text" id="admin-id" placeholder="admin" autocomplete="username" required>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Password</label>
+      <input type="password" id="admin-pw" placeholder="••••••••" autocomplete="current-password" required>
+    </div>
+
+    <div class="form-row-bottom">
+      <label class="remember-me">
+        <input type="checkbox" id="remember"> KEEP SESSION
+      </label>
+      <span class="sub" id="login-server">SERVER · …</span>
+    </div>
+
+    <button type="submit" class="submit-btn" id="submit-btn">AUTHENTICATE</button>
+
+    <div class="auth-footer">
+      <div>VORTEX SERVER · <span id="login-version">v0.1.0</span></div>
+      <div style="margin-top: 4px;">All actions are logged</div>
+    </div>
+  </form>
+</div>
+
+<!-- ============ ADMIN CONSOLE ============ -->
+<div id="admin-console" class="screen">
+
+<nav class="sidebar">
+  <div class="logo-wordmark">
+    <div class="logo-mark">
+      <video src="logo.mp4" autoplay loop muted playsinline preload="auto"></video>
+    </div>
+    <div>
+      <div class="logo-text">VORTEX</div>
+      <div class="logo-sub">// ADMIN</div>
+    </div>
+  </div>
+
+  <div class="nav-label">// OVERVIEW</div>
+  <div class="nav-links">
+    <div class="nav-item active" data-page="dashboard">
+      <svg viewBox="0 0 24 24"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+      Dashboard
+    </div>
+    <div class="nav-item" data-page="stations">
+      <svg viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
+      Stations
+    </div>
+  </div>
+
+  <div class="nav-label">// MANAGE</div>
+  <div class="nav-links">
+    <div class="nav-item" data-page="members">
+      <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      Members
+    </div>
+    <div class="nav-item" data-page="pricing">
+      <svg viewBox="0 0 24 24"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5"/></svg>
+      Pricing
+    </div>
+    <div class="nav-item" data-page="sales">
+      <svg viewBox="0 0 24 24"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 17.5v-11"/></svg>
+      Sales
+    </div>
+    <div class="nav-item" data-page="shop">
+      <svg viewBox="0 0 24 24"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+      Shop
+      <span class="nav-badge" id="nav-orders-badge" hidden>0</span>
+    </div>
+    <div class="nav-item" data-page="events">
+      <svg viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+      Events
+    </div>
+  </div>
+
+  <div class="nav-label">// SYSTEM</div>
+  <div class="nav-links">
+    <div class="nav-item" data-page="settings">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      Settings
+    </div>
+  </div>
+
+  <div class="sidebar-footer">
+    <div><span class="status-dot" id="net-dot">●</span> <span id="net-text">CONNECTING</span></div>
+    <div style="margin-top: 4px;">IN SESSION <span id="foot-sessions">0</span> · ONLINE <span id="foot-online">0</span>/<span id="foot-total">0</span></div>
+    <div style="margin-top: 4px; color: var(--text-faint);"><span id="foot-staff">—</span> · v0.1.0</div>
+  </div>
+</nav>
+
+<div class="content-wrapper">
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="topbar-label">// CONSOLE</div>
+      <div class="topbar-title" id="topbar-title">DASHBOARD</div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-meta" id="topbar-time">--:--:--</div>
+      <button class="btn btn-amber" id="btn-new-member">
+        <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" x2="19" y1="8" y2="14"/><line x1="22" x2="16" y1="11" y2="11"/></svg>
+        NEW MEMBER
+      </button>
+      <button class="btn btn-ghost" id="btn-logout" title="Log out">
+        <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+        LOGOUT
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ====== DASHBOARD ====== -->
+    <div id="dashboard" class="page active">
+      <h1 class="page-title" id="dash-cafe">DASHBOARD</h1>
+      <div class="page-desc">// REAL-TIME STATIONS · SALES · MEMBERS</div>
+
+      <div class="section-label">// LIVE STATUS</div>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-card-label">IN SESSION</div>
+          <div class="stat-big cyan" id="st-session">0 / 0</div>
+          <div class="sub"><span id="st-session-sub">0 stations online</span></div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-card-label">FREE</div>
+          <div class="stat-big green" id="st-free">0</div>
+          <div class="sub">ready for customers</div>
+        </div>
+        <div class="stat-card amber">
+          <div class="stat-card-label">OFFLINE / LOCKED</div>
+          <div class="stat-big amber" id="st-offline">0</div>
+          <div class="sub"><span id="st-locked-sub">0 locked by staff</span></div>
+        </div>
+      </div>
+
+      <div class="section-label magenta">// TODAY</div>
+      <div class="stat-grid">
+        <div class="stat-card magenta">
+          <div class="stat-card-label">REVENUE</div>
+          <div class="stat-big magenta" id="st-revenue">0.00</div>
+          <div class="sub"><span id="st-sold-sub">0h sold</span></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-label">SESSIONS</div>
+          <div class="stat-big cyan" id="st-sessions-today">0</div>
+          <div class="sub">started today</div>
+        </div>
+        <div class="stat-card amber">
+          <div class="stat-card-label">MEMBERS</div>
+          <div class="stat-big amber" id="st-members">0</div>
+          <div class="sub"><span id="st-members-sub">+0 today</span></div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <div class="section-label">// ACTIVE SESSIONS</div>
+          <div id="dash-sessions"></div>
+        </div>
+        <div>
+          <div class="section-label">// RECENT ACTIVITY</div>
+          <div id="dash-events"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== STATIONS ====== -->
+    <div id="stations" class="page">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">STATIONS</h1>
+          <div class="page-desc" id="stations-desc">// LIVE FEED</div>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <button class="btn btn-ghost" id="btn-add-station">+ ADD STATION</button>
+        </div>
+      </div>
+      <div id="stations-table"></div>
+      <div class="hint">New PCs appear here automatically the first time the Vortex client connects (auto-register can be turned off in Settings).</div>
+    </div>
+
+    <!-- ====== MEMBERS ====== -->
+    <div id="members" class="page">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">MEMBERS</h1>
+          <div class="page-desc" id="members-desc">// ACCOUNTS · TIME WALLETS</div>
+        </div>
+        <input type="text" class="search-input" id="member-search" placeholder="Search by username or email…">
+      </div>
+      <div id="members-table"></div>
+    </div>
+
+    <!-- ====== PRICING ====== -->
+    <div id="pricing" class="page">
+      <h1 class="page-title">PRICING</h1>
+      <div class="page-desc">// STATION GROUPS · TIME PACKAGES</div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="section-head">
+            <div class="section-label" style="margin:0">// STATION GROUPS · RATE PER HOUR</div>
+            <button class="btn-link" id="btn-add-group">+ ADD GROUP</button>
+          </div>
+          <div id="groups-table"></div>
+          <div class="hint">Custom minutes are priced with the group's hourly rate. Packages below override it.</div>
+        </div>
+        <div class="card">
+          <div class="section-head">
+            <div class="section-label magenta" style="margin:0">// TIME PACKAGES</div>
+            <button class="btn-link" id="btn-add-package">+ ADD PACKAGE</button>
+          </div>
+          <div id="packages-table"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== SALES ====== -->
+    <div id="sales" class="page">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">SALES & HISTORY</h1>
+          <div class="page-desc">// EVERY TOP-UP, GUEST SESSION AND ADJUSTMENT</div>
+        </div>
+        <div class="tabs" style="margin:0; border:0">
+          <div class="tab active" data-sales="today">TODAY</div>
+          <div class="tab" data-sales="all">RECENT</div>
+        </div>
+      </div>
+      <div id="sales-table"></div>
+      <div class="section-label" style="margin-top:24px">// SESSION HISTORY</div>
+      <div id="sessions-table"></div>
+    </div>
+
+    <!-- ====== SHOP ====== -->
+    <div id="shop" class="page">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">SHOP</h1>
+          <div class="page-desc" id="shop-desc">// COUNTER ORDERS · PRODUCTS · PICTURES</div>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <button class="btn btn-ghost" id="btn-add-product">+ ADD PRODUCT</button>
+        </div>
+      </div>
+      <div class="section-label">// PENDING ORDERS</div>
+      <div id="orders-table"></div>
+      <div class="hint">Orders arrive live from the kiosks. DONE records the sale (paid at the counter) and tells the customer; CANCEL tells them it was refused.</div>
+      <div class="section-label magenta" style="margin-top:24px">// PRODUCTS</div>
+      <div id="products-table"></div>
+      <div class="hint">Disabled products stay here but vanish from the kiosk shop. Prices are in the cafe currency; pictures are shrunk to 512×512 in the browser before upload.</div>
+      <div class="section-label" style="margin-top:24px">// ORDER HISTORY</div>
+      <div id="orders-history"></div>
+    </div>
+
+    <!-- ====== EVENTS ====== -->
+    <div id="events" class="page">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">EVENTS</h1>
+          <div class="page-desc" id="events-desc">// TOURNAMENTS · OFFERS · CLIENT BANNERS</div>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <button class="btn btn-ghost" id="btn-enable-events">ENABLE ALL</button>
+          <button class="btn btn-ghost" id="btn-disable-events">DISABLE ALL</button>
+          <button class="btn btn-ghost" id="btn-add-event">+ ADD EVENT</button>
+        </div>
+      </div>
+      <div id="events-list"></div>
+      <div class="hint">ENABLED puts the event on the clients at all. HOME shows it as the featured banner on the client Home page (the first enabled one wins); EVENTS lists it on the client Events page. Toggles apply immediately.</div>
+    </div>
+
+    <!-- ====== SETTINGS ====== -->
+    <div id="settings" class="page">
+      <h1 class="page-title">SETTINGS</h1>
+      <div class="page-desc">// CAFE · STAFF · SECURITY</div>
+      <div class="grid-2">
+        <div>
+          <div class="card" style="margin-bottom:16px">
+            <div class="section-label">// CAFE</div>
+            <label class="form-label">Cafe name</label>
+            <input type="text" id="set-cafe">
+            <div class="form-row">
+              <div>
+                <label class="form-label">Currency</label>
+                <input type="text" id="set-currency" maxlength="6">
+              </div>
+              <div>
+                <label class="form-label">Minimum session (minutes)</label>
+                <input type="number" id="set-min" min="0">
+              </div>
+            </div>
+            <label class="switch"><input type="checkbox" id="set-autoreg"> AUTO-REGISTER NEW STATIONS</label>
+            <div class="modal-buttons">
+              <button class="btn btn-primary" id="btn-save-settings">SAVE</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="section-label">// SERVER</div>
+            <div class="kv"><span class="k">Admin panel</span><span class="v" id="srv-url">—</span></div>
+            <div class="kv"><span class="k">Station address</span><span class="v" id="srv-ws">—</span></div>
+            <div class="kv"><span class="k">Version</span><span class="v" id="srv-version">—</span></div>
+            <div class="hint">Put the station address in every client's <span class="mono">client.json</span>.</div>
+          </div>
+        </div>
+        <div>
+          <div class="card" style="margin-bottom:16px">
+            <div class="section-label magenta">// STAFF PASSWORD</div>
+            <label class="form-label">Current password</label>
+            <input type="password" id="pw-current" autocomplete="current-password">
+            <label class="form-label">New password</label>
+            <input type="password" id="pw-new" autocomplete="new-password">
+            <div class="modal-buttons">
+              <button class="btn btn-magenta" id="btn-save-password">CHANGE PASSWORD</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="section-label magenta">// KIOSK EXIT PIN</div>
+            <div class="hint" style="margin:0 0 8px">Typed on a station after Ctrl+Shift+Q to leave the kiosk. Default is 1234 — change it.</div>
+            <label class="form-label">Your password</label>
+            <input type="password" id="pin-password" autocomplete="current-password">
+            <label class="form-label">New PIN (digits)</label>
+            <input type="text" id="pin-new" inputmode="numeric" maxlength="12" class="code-input">
+            <div class="modal-buttons">
+              <button class="btn btn-amber" id="btn-save-pin">SET PIN</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section-label" style="margin-top:24px">// AUDIT LOG</div>
+      <div id="events-table"></div>
+    </div>
+
+  </main>
+</div>
+
+</div><!-- /admin-console -->
+
+<div class="modal" id="modal">
+  <div class="modal-content" id="modal-content"></div>
+</div>
+<div id="toast" class="toast"></div>
+
+<script src="admin.js"></script>
+</body>
+</html>

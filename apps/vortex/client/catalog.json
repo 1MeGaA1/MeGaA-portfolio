@@ -1,0 +1,119 @@
+{
+  "_readme": "Edit paths for this PC. 'exe' launches a program, 'launch' opens a URI (steam://, riot, epic). 'process' is the process name Vortex watches and kills when the session ends.",
+  "games": {
+    "Counter-Strike 2": {
+      "launch": "steam://run/730",
+      "process": "cs2.exe"
+    },
+    "Dota 2": {
+      "launch": "steam://run/570",
+      "process": "dota2.exe"
+    },
+    "Apex Legends": {
+      "launch": "steam://run/1172470",
+      "process": "r5apex.exe"
+    },
+    "GTA V": {
+      "launch": "steam://run/271590",
+      "process": "GTA5.exe"
+    },
+    "Elden Ring": {
+      "launch": "steam://run/1245620",
+      "process": "eldenring.exe"
+    },
+    "Valorant": {
+      "exe": "C:/Riot Games/Riot Client/RiotClientServices.exe",
+      "args": [
+        "--launch-product=valorant",
+        "--launch-patchline=live"
+      ],
+      "process": "VALORANT-Win64-Shipping.exe"
+    },
+    "League of Legends": {
+      "exe": "C:/Riot Games/Riot Client/RiotClientServices.exe",
+      "args": [
+        "--launch-product=league_of_legends",
+        "--launch-patchline=live"
+      ],
+      "process": "League of Legends.exe"
+    },
+    "Fortnite": {
+      "launch": "com.epicgames.launcher://apps/Fortnite?action=launch&silent=true",
+      "process": "FortniteClient-Win64-Shipping.exe"
+    },
+    "Rocket League": {
+      "launch": "com.epicgames.launcher://apps/Sugar?action=launch&silent=true",
+      "process": "RocketLeague.exe"
+    },
+    "Minecraft": {
+      "exe": "C:/Program Files (x86)/Minecraft Launcher/MinecraftLauncher.exe",
+      "process": "Minecraft.Windows.exe"
+    }
+  },
+  "apps": {
+    "Chrome": {
+      "exe": "C:/Program Files/Google/Chrome/Application/chrome.exe",
+      "process": "chrome.exe"
+    },
+    "Firefox": {
+      "exe": "C:/Program Files/Mozilla Firefox/firefox.exe",
+      "process": "firefox.exe"
+    },
+    "Discord": {
+      "launch": "discord://",
+      "process": "Discord.exe"
+    },
+    "Spotify": {
+      "launch": "spotify:",
+      "process": "Spotify.exe"
+    },
+    "Steam": {
+      "launch": "steam://open/main",
+      "process": "steam.exe"
+    },
+    "Epic Games": {
+      "launch": "com.epicgames.launcher://store",
+      "process": "EpicGamesLauncher.exe"
+    },
+    "Riot Client": {
+      "exe": "C:/Riot Games/Riot Client/RiotClientServices.exe",
+      "process": "RiotClientServices.exe"
+    },
+    "EA Play": {
+      "exe": "C:/Program Files/Electronic Arts/EA Desktop/EA Desktop/EADesktop.exe",
+      "process": "EADesktop.exe"
+    },
+    "Telegram": {
+      "launch": "tg://",
+      "process": "Telegram.exe"
+    },
+    "VLC": {
+      "exe": "C:/Program Files/VideoLAN/VLC/vlc.exe",
+      "process": "vlc.exe"
+    },
+    "YouTube": {
+      "exe": "C:/Program Files/Google/Chrome/Application/chrome.exe",
+      "args": [
+        "--new-window",
+        "https://youtube.com"
+      ],
+      "process": "chrome.exe"
+    },
+    "Netflix": {
+      "exe": "C:/Program Files/Google/Chrome/Application/chrome.exe",
+      "args": [
+        "--new-window",
+        "https://netflix.com"
+      ],
+      "process": "chrome.exe"
+    },
+    "Twitch": {
+      "exe": "C:/Program Files/Google/Chrome/Application/chrome.exe",
+      "args": [
+        "--new-window",
+        "https://twitch.tv"
+      ],
+      "process": "chrome.exe"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "_readme": "Native client catalog. 'cat' drives the category filter chips (fps/moba/rpg/action/sports for games; media/social/creative/launchers/browsers for apps). Edit exe/args/launch/process per PC as in the web client.",
+  "games": {
+    "Counter-Strike 2": {"launch": "steam://run/730", "process": "cs2.exe", "cat": "fps"},
+    "Valorant": {"exe": "C:/Riot Games/Riot Client/RiotClientServices.exe", "args": ["--launch-product=valorant", "--launch-patchline=live"], "process": "VALORANT-Win64-Shipping.exe", "cat": "fps"},
+    "Apex Legends": {"launch": "steam://run/1172470", "process": "r5apex.exe", "cat": "fps"},
+    "Fortnite": {"launch": "com.epicgames.launcher://apps/Fortnite?action=launch&silent=true", "process": "FortniteClient-Win64-Shipping.exe", "cat": "fps"},
+    "Call of Duty": {"launch": "battlenet://CoD", "process": "cod.exe", "cat": "fps"},
+    "Overwatch 2": {"launch": "battlenet://Pro", "process": "Overwatch.exe", "cat": "fps"},
+    "League of Legends": {"exe": "C:/Riot Games/Riot Client/RiotClientServices.exe", "args": ["--launch-product=league_of_legends", "--launch-patchline=live"], "process": "League of Legends.exe", "cat": "moba"},
+    "Dota 2": {"launch": "steam://run/570", "process": "dota2.exe", "cat": "moba"},
+    "Elden Ring": {"launch": "steam://run/1245620", "process": "eldenring.exe", "cat": "rpg"},
+    "Diablo IV": {"launch": "battlenet://Fen", "process": "Diablo IV.exe", "cat": "rpg"},
+    "Baldur's Gate 3": {"launch": "steam://run/1086940", "process": "bg3.exe", "cat": "rpg"},
+    "Minecraft": {"exe": "C:/Program Files (x86)/Minecraft Launcher/MinecraftLauncher.exe", "process": "Minecraft.Windows.exe", "cat": "rpg"},
+    "GTA V": {"launch": "steam://run/271590", "process": "GTA5.exe", "cat": "action"},
+    "Red Dead 2": {"launch": "steam://run/1174180", "process": "RDR2.exe", "cat": "action"},
+    "Cyberpunk 2077": {"launch": "steam://run/1091500", "process": "Cyberpunk2077.exe", "cat": "action"},
+    "Rocket League": {"launch": "com.epicgames.launcher://apps/Sugar?action=launch&silent=true", "process": "RocketLeague.exe", "cat": "sports"},
+    "FIFA 26": {"launch": "origin://launchgame/fifa26", "process": "FC26.exe", "cat": "sports"}
+  },
+  "apps": {
+    "Chrome": {"exe": "C:/Program Files/Google/Chrome/Application/chrome.exe", "process": "chrome.exe", "cat": "browsers"},
+    "Firefox": {"exe": "C:/Program Files/Mozilla Firefox/firefox.exe", "process": "firefox.exe", "cat": "browsers"},
+    "YouTube": {"exe": "C:/Program Files/Google/Chrome/Application/chrome.exe", "args": ["--new-window", "https://youtube.com"], "process": "chrome.exe", "cat": "media"},
+    "Netflix": {"exe": "C:/Program Files/Google/Chrome/Application/chrome.exe", "args": ["--new-window", "https://netflix.com"], "process": "chrome.exe", "cat": "media"},
+    "Twitch": {"exe": "C:/Program Files/Google/Chrome/Application/chrome.exe", "args": ["--new-window", "https://twitch.tv"], "process": "chrome.exe", "cat": "media"},
+    "Spotify": {"launch": "spotify:", "process": "Spotify.exe", "cat": "media"},
+    "VLC": {"exe": "C:/Program Files/VideoLAN/VLC/vlc.exe", "process": "vlc.exe", "cat": "media"},
+    "Discord": {"launch": "discord://", "process": "Discord.exe", "cat": "social"},
+    "Telegram": {"launch": "tg://", "process": "Telegram.exe", "cat": "social"},
+    "OBS Studio": {"exe": "C:/Program Files/obs-studio/bin/64bit/obs64.exe", "cwd": "C:/Program Files/obs-studio/bin/64bit", "process": "obs64.exe", "cat": "creative"},
+    "Steam": {"launch": "steam://open/main", "process": "steam.exe", "cat": "launchers"},
+    "Epic Games": {"launch": "com.epicgames.launcher://store", "process": "EpicGamesLauncher.exe", "cat": "launchers"},
+    "EA Play": {"exe": "C:/Program Files/Electronic Arts/EA Desktop/EA Desktop/EADesktop.exe", "process": "EADesktop.exe", "cat": "launchers"},
+    "Riot Client": {"exe": "C:/Riot Games/Riot Client/RiotClientServices.exe", "process": "RiotClientServices.exe", "cat": "launchers"}
+  }
+}

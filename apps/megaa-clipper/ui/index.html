@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#05070d">
+<title>MeGaA Clipper</title>
+<link rel="icon" href="/ui/clipper.ico">
+<link rel="stylesheet" href="/ui/app.css">
+</head>
+<body>
+<div class="backdrop" aria-hidden="true"></div>
+
+<header class="topbar">
+  <div class="brand">
+    <svg class="logo" viewBox="0 0 40 40" aria-hidden="true">
+      <path d="M12 7 L35 20 L12 33 Z" fill="var(--magenta)"/>
+      <path d="M8 7 L31 20 L8 33 Z" fill="var(--cyan)"/>
+    </svg>
+    <div>
+      <div class="brand-name"><span class="brand-megaa">MeGaA</span> CLIPPER</div>
+      <div class="brand-sub">SHORT-FORM ENGINE</div>
+    </div>
+  </div>
+
+  <div class="project">
+    <button class="btn ghost" id="btn-open" title="Open a video">
+      <svg viewBox="0 0 24 24"><path d="M3 7h6l2 2h10v10H3z"/></svg>Open
+    </button>
+    <div class="project-meta">
+      <div class="project-name" id="project-name">No video</div>
+      <div class="project-info mono" id="project-info"></div>
+    </div>
+  </div>
+
+  <div class="top-right">
+    <div class="chip mono" id="prep-chip" hidden></div>
+    <div class="status" id="status"><span class="dot"></span><span id="status-text">Ready</span></div>
+  </div>
+  <div class="topline"><div class="topline-fill" id="topline"></div></div>
+</header>
+
+<main class="workspace">
+  <!-- transcript -->
+  <section class="panel transcript">
+    <div class="panel-head">
+      <h2>Transcript</h2>
+      <span class="tag mono" id="line-count"></span>
+      <div class="spacer"></div>
+      <div class="search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg>
+        <input id="search" placeholder="Search words…" autocomplete="off" spellcheck="false">
+        <span class="mono" id="search-count"></span>
+      </div>
+      <button class="icon-btn" id="btn-cut-mode" title="Cut tool: click words to remove them from the clip (X)">
+        <svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.5 7.5L20 18M8.5 16.5L20 6"/></svg>
+      </button>
+      <button class="icon-btn" id="btn-mute-mode" title="Mute tool: click words to silence or bleep them (M)">
+        <svg viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4zM17 9l5 6M22 9l-5 6"/></svg>
+      </button>
+      <button class="icon-btn" id="btn-retranscribe" title="Transcribe again">
+        <svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 14-5.3M20 4v5h-5M20 12a8 8 0 0 1-14 5.3M4 20v-5h5"/></svg>
+      </button>
+    </div>
+    <div class="lines" id="lines"></div>
+    <div class="empty" id="transcript-empty">
+      <div class="empty-orb"><svg viewBox="0 0 24 24"><path d="M12 3v12M8 7v4M16 7v4M4 10v1M20 10v1M7 21h10M12 15a4 4 0 0 0 4-4"/></svg></div>
+      <h3>No transcript yet</h3>
+      <p>Turn the speech into text with word timings, then pick your moments.</p>
+      <div class="row">
+        <select id="lang" class="select">
+          <option value="en">English</option><option value="auto">Auto detect</option>
+          <option value="ar">Arabic</option><option value="es">Spanish</option>
+          <option value="fr">French</option><option value="de">German</option>
+          <option value="pt">Portuguese</option><option value="it">Italian</option>
+          <option value="tr">Turkish</option><option value="hi">Hindi</option>
+          <option value="ja">Japanese</option><option value="ko">Korean</option><option value="zh">Chinese</option>
+        </select>
+        <button class="btn primary" id="btn-transcribe">Transcribe</button>
+      </div>
+    </div>
+    <div class="panel-foot">
+      <span><kbd>Click</kbd> start</span>
+      <span><kbd>Shift</kbd>+<kbd>Click</kbd> end</span>
+      <span><kbd>Dbl-click</kbd> play</span>
+      <div class="spacer"></div>
+      <label class="switch"><input type="checkbox" id="follow" checked><span></span>Follow</label>
+    </div>
+  </section>
+
+  <!-- stage -->
+  <section class="panel stage">
+    <div class="stage-view">
+      <div class="phone" id="phone">
+        <canvas id="canvas" width="540" height="960"></canvas>
+        <div class="phone-hud tl mono" id="hud-time">T+ 0:00.0</div>
+        <div class="phone-hud tr mono" id="hud-mode">CROP</div>
+        <div class="phone-msg" id="phone-msg"></div>
+      </div>
+    </div>
+    <div class="transport">
+      <button class="icon-btn" id="btn-back" title="Back 5 s (J)"><svg viewBox="0 0 24 24"><path d="M11 6l-6 6 6 6M19 6l-6 6 6 6"/></svg></button>
+      <button class="play-btn" id="btn-play" title="Play / pause (Space)">
+        <svg class="i-play" viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z"/></svg>
+        <svg class="i-pause" viewBox="0 0 24 24"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>
+      </button>
+      <button class="icon-btn" id="btn-fwd" title="Forward 5 s (L)"><svg viewBox="0 0 24 24"><path d="M13 6l6 6-6 6M5 6l6 6-6 6"/></svg></button>
+      <div class="timecode mono"><span id="tc-now">0:00.0</span><span class="dim"> / </span><span id="tc-dur" class="dim">0:00.0</span></div>
+      <div class="spacer"></div>
+      <button class="toggle-btn on" id="btn-loop" title="Loop the clip">Loop</button>
+      <button class="toggle-btn" id="btn-safe" title="Show where TikTok buttons cover the video">Safe zones</button>
+    </div>
+    <div class="strip-wrap">
+      <canvas id="strip"></canvas>
+    </div>
+    <canvas id="overview"></canvas>
+  </section>
+
+  <!-- inspector -->
+  <section class="panel inspector">
+    <div class="panel-head">
+      <h2>Clip</h2>
+      <span class="tag mono" id="edit-tag">NEW</span>
+      <div class="spacer"></div>
+      <button class="btn ghost small" id="btn-new" title="Start a new clip">New</button>
+    </div>
+    <div class="tabs" id="tabs">
+      <button data-tab="clip" class="on">Clip</button>
+      <button data-tab="captions">Captions</button>
+      <button data-tab="edit">Edit</button>
+    </div>
+    <div class="inspector-body" data-pane="clip">
+      <label class="field">
+        <span class="label">Name</span>
+        <input id="f-name" class="input" spellcheck="false">
+      </label>
+
+      <div class="field">
+        <span class="label">In / Out</span>
+        <div class="inout">
+          <div class="time-box">
+            <input id="f-in" class="input mono" placeholder="0:00.0">
+            <button class="mini" id="btn-set-in" title="Set start at playhead (I)">I</button>
+          </div>
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M4 12h15M14 7l5 5-5 5"/></svg>
+          <div class="time-box">
+            <input id="f-out" class="input mono" placeholder="0:00.0">
+            <button class="mini" id="btn-set-out" title="Set end at playhead (O)">O</button>
+          </div>
+        </div>
+        <div class="length-row">
+          <span class="length mono" id="f-length">—</span>
+          <span class="length-hint" id="f-length-hint">Best length: 20–60 s</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="label">Layout</span>
+        <div class="segmented" id="f-layout">
+          <button data-value="crop" class="on">
+            <svg viewBox="0 0 24 24"><rect x="8" y="3" width="8" height="18" rx="1.5"/></svg>Crop
+          </button>
+          <button data-value="fit">
+            <svg viewBox="0 0 24 24"><rect x="8" y="3" width="8" height="18" rx="1.5"/><rect x="3" y="9" width="18" height="6" rx="1"/></svg>Fit + blur
+          </button>
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="label">Zoom <span class="mono dim" id="f-zoom-val">100%</span></span>
+        <div class="sub-row">
+          <input type="range" id="f-zoom" min="50" max="250" step="5" value="100" class="range">
+          <button class="btn ghost small" id="btn-frame-reset" title="Back to 100%, centred">Reset</button>
+        </div>
+      </div>
+
+      <div class="field" id="crop-field">
+        <span class="label">Left / right <span class="mono dim" id="f-crop-val">50%</span></span>
+        <input type="range" id="f-crop" min="0" max="1000" value="500" class="range">
+        <span class="hint">Scroll on the preview to zoom · drag the preview to move the video</span>
+      </div>
+
+      <div class="field">
+        <span class="label">Hook <span class="dim">· text on top</span></span>
+        <textarea id="f-hook" class="input" rows="2" placeholder="Nobody tells you this about money…"></textarea>
+        <div class="hook-grid" id="hook-grid"></div>
+        <div class="sub-row">
+          <span class="hint">Size</span>
+          <input type="range" id="h-size" min="60" max="180" step="5" value="100" class="range">
+          <span class="mono dim val" id="h-size-val">100%</span>
+        </div>
+        <div class="sub-row">
+          <span class="hint">Height</span>
+          <input type="range" id="h-pos" min="40" max="1500" step="10" value="230" class="range">
+          <span class="mono dim val" id="h-pos-val">top</span>
+        </div>
+        <div class="segmented four" id="h-dur" title="How long the hook stays on screen">
+          <button data-value="0" class="on">Whole</button><button data-value="3">3 s</button>
+          <button data-value="5">5 s</button><button data-value="8">8 s</button>
+        </div>
+        <button class="btn ghost small" id="btn-hook-all" title="Use this hook look (not the text) on every clip">Hook look → all clips</button>
+      </div>
+
+      <label class="field">
+        <span class="label">Post caption <span class="dim">· for TikTok / Reels</span></span>
+        <textarea id="f-post" class="input" rows="2" placeholder="Pay yourself first #money #finance"></textarea>
+      </label>
+    </div>
+
+    <div class="inspector-body" data-pane="captions" hidden>
+      <label class="switch big"><input type="checkbox" id="f-captions" checked><span></span>Show captions</label>
+
+      <div class="field">
+        <span class="label">Style</span>
+        <div class="style-grid" id="style-grid"></div>
+      </div>
+
+      <div class="field" id="color-field">
+        <span class="label">Highlight colour</span>
+        <div class="swatches" id="swatches"></div>
+      </div>
+
+      <div class="field">
+        <span class="label">Size <span class="mono dim" id="f-size-val">100%</span></span>
+        <input type="range" id="f-size" min="60" max="160" step="5" value="100" class="range">
+      </div>
+
+      <div class="field">
+        <span class="label">Height on screen <span class="mono dim" id="f-pos-val"></span></span>
+        <input type="range" id="f-pos" min="120" max="1500" step="10" value="480" class="range">
+      </div>
+
+      <div class="cap-actions">
+        <button class="btn ghost small" id="btn-cap-reset">Reset colour &amp; size</button>
+        <button class="btn ghost small" id="btn-cap-all">Apply to all clips</button>
+      </div>
+    </div>
+
+    <div class="inspector-body" data-pane="edit" hidden>
+      <div class="final-box">
+        <span class="label">Final length</span>
+        <span class="length mono" id="e-final">—</span>
+        <span class="hint" id="e-final-hint">Pick a clip range first</span>
+      </div>
+
+      <div class="field teaser-field" id="teaser-field">
+        <label class="switch big"><input type="checkbox" id="e-intro"><span></span>Teaser at the start</label>
+        <span class="hint">Plays a 3–5 s highlight first, then the clip from the beginning.</span>
+        <div class="teaser-body">
+          <div class="inout">
+            <div class="time-box">
+              <input id="e-intro-a" class="input mono" placeholder="from">
+              <button class="mini" id="e-intro-set-a" title="Teaser starts at the playhead">I</button>
+            </div>
+            <svg class="arrow" viewBox="0 0 24 24"><path d="M4 12h15M14 7l5 5-5 5"/></svg>
+            <div class="time-box">
+              <input id="e-intro-b" class="input mono" placeholder="to">
+              <button class="mini" id="e-intro-set-b" title="Teaser ends at the playhead">O</button>
+            </div>
+          </div>
+          <div class="sub-row">
+            <button class="btn ghost small" id="e-intro-pick" title="Click the first word, then the last word">Pick words</button>
+            <button class="btn ghost small" id="e-intro-auto" title="Find the most energetic 3–5 seconds">Auto pick</button>
+            <button class="btn ghost small" id="e-intro-play" title="Watch the teaser">
+              <svg viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z"/></svg>Play
+            </button>
+          </div>
+          <div class="sub-row">
+            <span class="hint grow" id="e-intro-info">No teaser picked</span>
+            <label class="switch"><input type="checkbox" id="e-intro-flash" checked><span></span>Flash</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="switch big"><input type="checkbox" id="e-pauses"><span></span>Remove pauses</label>
+        <div class="sub-row">
+          <span class="hint">Silences longer than</span>
+          <input type="range" id="e-pause-min" min="20" max="150" step="5" value="50" class="range">
+          <span class="mono dim val" id="e-pause-val">0.5s</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="label">Cut words</span>
+        <div class="sub-row">
+          <button class="btn ghost small" id="e-cut-mode" title="Toggle the cut tool (X)">
+            <svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.5 7.5L20 18M8.5 16.5L20 6"/></svg>Cut tool
+          </button>
+          <span class="hint grow" id="e-cut-count">No words cut</span>
+          <button class="btn ghost small" id="e-cut-clear">Clear</button>
+        </div>
+        <span class="hint">Turn on the cut tool, then click words in the transcript to remove them (Shift+click for a run of words).</span>
+      </div>
+
+      <div class="field">
+        <span class="label">Mute words</span>
+        <div class="sub-row">
+          <button class="btn ghost small" id="e-mute-mode" title="Toggle the mute tool (M)">
+            <svg viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4zM17 9l5 6M22 9l-5 6"/></svg>Mute tool
+          </button>
+          <span class="hint grow" id="e-mute-count">No words muted</span>
+          <button class="btn ghost small" id="e-mute-clear">Clear</button>
+        </div>
+        <span class="hint">Sound on muted words – click one to hear it</span>
+        <div class="sound-grid" id="e-mute-sound"></div>
+        <div class="sub-row" id="e-custom-row" hidden>
+          <span class="music-name grow none" id="e-sfx-name">No sound file</span>
+          <button class="btn ghost small" id="e-sfx-pick">Choose file</button>
+        </div>
+        <div class="sub-row" id="e-sfx-vol-row">
+          <span class="hint">Effect volume</span>
+          <input type="range" id="e-sfx-vol" min="0" max="150" step="5" value="80" class="range">
+          <span class="mono dim val" id="e-sfx-vol-val">80%</span>
+        </div>
+        <label class="switch"><input type="checkbox" id="e-mute-captions" checked><span></span>Censor captions (f***)</label>
+        <span class="hint">Turn on the mute tool, then click words in the transcript – the video keeps playing, only the sound goes.</span>
+      </div>
+
+      <div class="field">
+        <label class="switch big"><input type="checkbox" id="e-zoom"><span></span>Zoom punch-ins</label>
+        <div class="sub-row">
+          <span class="hint">Amount</span>
+          <input type="range" id="e-zoom-amt" min="105" max="140" step="1" value="115" class="range">
+          <span class="mono dim val" id="e-zoom-val">115%</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="label">Speed</span>
+        <div class="segmented four" id="e-speed">
+          <button data-value="1" class="on">1×</button><button data-value="1.1">1.1×</button>
+          <button data-value="1.2">1.2×</button><button data-value="1.3">1.3×</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="switch big"><input type="checkbox" id="e-progress"><span></span>Progress bar</label>
+        <div class="swatches" id="e-progress-colors"></div>
+      </div>
+
+      <div class="field">
+        <span class="label">Background music</span>
+        <div class="sub-row">
+          <button class="btn ghost small" id="e-music-pick">
+            <svg viewBox="0 0 24 24"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>Choose
+          </button>
+          <span class="music-name grow" id="e-music-name">No music</span>
+          <button class="icon-btn" id="e-music-clear" title="Remove music"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+        </div>
+        <div class="sub-row">
+          <span class="hint">Volume</span>
+          <input type="range" id="e-music-vol" min="0" max="60" value="15" class="range">
+          <span class="mono dim val" id="e-music-val">15%</span>
+        </div>
+        <span class="hint">The music dips automatically while someone is talking.</span>
+      </div>
+
+      <div class="field">
+        <span class="label">Watermark</span>
+        <input id="e-watermark" class="input" placeholder="@yourhandle" spellcheck="false" maxlength="40">
+        <div class="segmented four" id="e-wm-pos">
+          <button data-value="tl">↖ TL</button><button data-value="tr" class="on">↗ TR</button>
+          <button data-value="bl">↙ BL</button><button data-value="br">↘ BR</button>
+        </div>
+      </div>
+
+      <div class="cap-actions">
+        <button class="btn ghost small" id="btn-edit-all" title="Copy these settings (not the cuts) to every clip">Apply to all clips</button>
+      </div>
+      <span class="hint">Audio is always levelled to −14 LUFS, the TikTok / Reels / Shorts standard.</span>
+    </div>
+    <div class="inspector-actions">
+      <button class="btn ghost" id="btn-add">Add to queue</button>
+      <button class="btn primary" id="btn-render-one">Render clip</button>
+    </div>
+  </section>
+</main>
+
+<!-- queue -->
+<section class="panel queue">
+  <div class="panel-head">
+    <h2>Queue</h2>
+    <span class="tag mono" id="queue-count">0</span>
+    <div class="spacer"></div>
+    <button class="btn ghost small" id="btn-folder">Open folder</button>
+    <button class="btn primary small" id="btn-render-all">Render all</button>
+  </div>
+  <div class="cards" id="cards"></div>
+</section>
+
+<!-- welcome -->
+<div class="welcome" id="welcome">
+  <div class="welcome-card">
+    <svg class="welcome-logo" viewBox="0 0 40 40" aria-hidden="true">
+      <path d="M12 7 L35 20 L12 33 Z" fill="var(--magenta)"/>
+      <path d="M8 7 L31 20 L8 33 Z" fill="var(--cyan)"/>
+    </svg>
+    <div class="welcome-brand"><span class="brand-megaa">MeGaA</span> CLIPPER</div>
+    <h1>Long video in.<br><span class="grad">Viral clips out.</span></h1>
+    <p>Transcribe on your GPU, pick the moments, and render vertical clips with word-by-word captions.</p>
+    <button class="btn primary big" id="btn-open-hero">
+      <svg viewBox="0 0 24 24"><path d="M3 7h6l2 2h10v10H3z"/></svg>Open a video
+    </button>
+    <div class="recent" id="recent-wrap">
+      <div class="recent-title">Recent projects</div>
+      <div class="recent-list" id="recent"></div>
+    </div>
+  </div>
+</div>
+
+<!-- rendered clip player -->
+<div class="modal" id="player" hidden>
+  <div class="modal-card">
+    <div class="modal-head">
+      <h2 id="player-title">clip</h2>
+      <div class="spacer"></div>
+      <button class="btn ghost small" id="player-reveal">Show in folder</button>
+      <button class="icon-btn" id="player-close" title="Close (Esc)"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="player-frame"><video id="player-video" controls playsinline></video></div>
+    <div class="player-caption" id="player-caption"></div>
+  </div>
+</div>
+
+<div class="toasts" id="toasts"></div>
+<video id="src" class="offscreen" preload="auto" playsinline></video>
+<audio id="music" class="offscreen" preload="auto" loop></audio>
+<script src="/ui/app.js"></script>
+<script src="/ui/pro.js"></script>
+</body>
+</html>
